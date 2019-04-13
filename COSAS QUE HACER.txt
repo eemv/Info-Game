@@ -1,0 +1,4 @@
+COSAS QUE HACER EN AISS:
+-Descripción de los diagramas.
+-Operación de escritura en diagrama.
+-"Opcional": Operación de escritura en el mockup.
