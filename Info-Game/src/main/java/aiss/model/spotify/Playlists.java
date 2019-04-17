@@ -1,13 +1,15 @@
+
 package aiss.model.spotify;
 
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 import com.fasterxml.jackson.annotation.JsonAnyGetter;
 import com.fasterxml.jackson.annotation.JsonAnySetter;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
-import java.util.HashMap;
-import java.util.Map;
 
 @JsonInclude(JsonInclude.Include.NON_NULL)
 @JsonPropertyOrder({
@@ -24,11 +26,11 @@ public class Playlists {
     @JsonProperty("href")
     private String href;
     @JsonProperty("items")
-    private java.util.List<Playlist> items = null;
+    private List<Item> items = null;
     @JsonProperty("limit")
     private Integer limit;
     @JsonProperty("next")
-    private Object next;
+    private String next;
     @JsonProperty("offset")
     private Integer offset;
     @JsonProperty("previous")
@@ -49,12 +51,12 @@ public class Playlists {
     }
 
     @JsonProperty("items")
-    public java.util.List<Playlist> getItems() {
+    public List<Item> getItems() {
         return items;
     }
 
     @JsonProperty("items")
-    public void setItems(java.util.List<Playlist> items) {
+    public void setItems(List<Item> items) {
         this.items = items;
     }
 
@@ -69,12 +71,12 @@ public class Playlists {
     }
 
     @JsonProperty("next")
-    public Object getNext() {
+    public String getNext() {
         return next;
     }
 
     @JsonProperty("next")
-    public void setNext(Object next) {
+    public void setNext(String next) {
         this.next = next;
     }
 

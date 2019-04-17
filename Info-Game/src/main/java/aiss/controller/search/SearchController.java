@@ -41,7 +41,7 @@ public class SearchController extends HttpServlet {
 		
 
 				log.log(Level.FINE, "Searching for Spotify playlists that contain " + query);
-				SpotifyResource spotify = new SpotifyResource(/* ACCESS TOKEN */);
+				SpotifyResource spotify = new SpotifyResource("BQALI4HTtjUPoPsl_4luGSG4-Dzn1an7ZXWCuOpu7stl2wflfWwEQD44PJIDbjgUphbTBZEiuRnWJ4jm8yoPffXKZ1aORvcBncECk-ILYusn7MVe2c9oyB9aMQf8Ft8WsYO3JxT8JlgG8IhFf_bXYrQDQ8z-Yx2-GlOQg3e7Wd1Shtjv_GfNzc_FdCwMHny31KkdL_FFvSyjourgXE2h-1UBRSA7hzNnQvmiIuOrTQ");
 				Playlists spotifyResults = spotify.searchPlaylist(query);
 				
 				if (spotifyResults!=null ){

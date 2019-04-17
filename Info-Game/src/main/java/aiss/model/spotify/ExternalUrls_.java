@@ -14,7 +14,7 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 @JsonPropertyOrder({
     "spotify"
 })
-public class ExternalUrls {
+public class ExternalUrls_ {
 
     @JsonProperty("spotify")
     private String spotify;
