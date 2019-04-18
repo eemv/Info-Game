@@ -41,18 +41,33 @@ public class SearchController extends HttpServlet {
 		
 
 				log.log(Level.FINE, "Searching for Spotify playlists that contain " + query);
-				SpotifyResource spotify = new SpotifyResource("BQALI4HTtjUPoPsl_4luGSG4-Dzn1an7ZXWCuOpu7stl2wflfWwEQD44PJIDbjgUphbTBZEiuRnWJ4jm8yoPffXKZ1aORvcBncECk-ILYusn7MVe2c9oyB9aMQf8Ft8WsYO3JxT8JlgG8IhFf_bXYrQDQ8z-Yx2-GlOQg3e7Wd1Shtjv_GfNzc_FdCwMHny31KkdL_FFvSyjourgXE2h-1UBRSA7hzNnQvmiIuOrTQ");
-				Playlists spotifyResults = spotify.searchPlaylist(query);
+				String accessToken = (String) request.getSession().getAttribute("Spotify-token");
+		        
+		        if(query != null  && query != "") {
+		        	if (accessToken != null && !"".equals(accessToken)) {
+
+		        		SpotifyResource spResource = new SpotifyResource(accessToken);
+		        		Playlists spotifyResults = spResource.searchPlaylist(query);
+		        		if (spotifyResults!=null){
+		        			rd = request.getRequestDispatcher("/success.jsp");
+		        			request.setAttribute("playlists", spotifyResults.getItems());
+		        		} else {
+		        			log.log(Level.SEVERE, "Spotify object: " + spotifyResults);
+		        			rd = request.getRequestDispatcher("/error.jsp");
+		        		}
+		        		rd.forward(request, response);
+
+		        	} else {
+		        		log.info("Trying to access Spotify without an access token, redirecting to OAuth servlet");
+		        		request.getRequestDispatcher("/AuthController/Spotify").forward(request, response);
+		        	}
+		        }else {
+		        	request.getRequestDispatcher("/success.jsp");
+		        }
+		    
+		    }
 				
-				if (spotifyResults!=null ){
-					rd = request.getRequestDispatcher("/success.jsp");
-					request.setAttribute("playlists", spotifyResults.getItems());
-				} else {
-					log.log(Level.SEVERE, "OMDb object: " + spotifyResults);
-					rd = request.getRequestDispatcher("/error.jsp");
-				}
-				rd.forward(request, response);
-			}
+				
 		
 //		// Search for movies in OMDb
 //		log.log(Level.FINE, "Searching for OMDb movies that contain " + query);
