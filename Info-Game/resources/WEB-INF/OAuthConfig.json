@@ -1,10 +1,6 @@
 {	
     "IGDB": { 
-        "tokenUrl": "https://www.googleapis.com/oauth2/v4/token",
-        "user-key": "52d6ccf6c9252094bad3790904e8ad03",
-        "clientSecret": "Nu4YxuJwtVG7oHIQy1wFAqe9",
-        "authorizationFormUrl": "https://accounts.google.com/o/oauth2/v2/auth",
-        "scopes": ["https://www.googleapis.com/auth/drive"]
+        "user-key": "52d6ccf6c9252094bad3790904e8ad03"
     },
     "Spotify": {
         "tokenUrl": "https://accounts.spotify.com/api/token ",
