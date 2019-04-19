@@ -43,6 +43,7 @@ public class SearchController extends HttpServlet {
 				log.log(Level.FINE, "Searching for Spotify playlists that contain " + query);
 				String accessToken = (String) request.getSession().getAttribute("Spotify-token");
 		        
+				
 		        if(query != null  && query != "") {
 		        	if (accessToken != null && !"".equals(accessToken)) {
 
@@ -61,6 +62,7 @@ public class SearchController extends HttpServlet {
 		        		log.info("Trying to access Spotify without an access token, redirecting to OAuth servlet");
 		        		request.getRequestDispatcher("/AuthController/Spotify").forward(request, response);
 		        	}
+		        	if()
 		        }else {
 		        	request.getRequestDispatcher("/success.jsp");
 		        }
