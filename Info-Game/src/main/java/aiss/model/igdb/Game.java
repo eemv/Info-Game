@@ -20,6 +20,7 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 "platforms",
 "websites"
 })
+
 public class Game {
 
 	@JsonProperty("id")
@@ -131,5 +132,6 @@ public class Game {
 	this.additionalProperties.put(name, value);
 	}
 
-	}
+
 }
+

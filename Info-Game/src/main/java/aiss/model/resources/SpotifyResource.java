@@ -26,8 +26,7 @@ public class SpotifyResource {
     	
     	String queryFormatted = "q=" + "name:" + URLEncoder.encode(query, "UTF-8");
     	String URLSearchPlaylists = baseURL + "/search" + queryFormatted + "&type=playlist";
-    	ClientResource cr = new ClientResource(URLSearchPlaylists);
-    	  
+    	ClientResource cr = new ClientResource(URLSearchPlaylists);  
     	ChallengeResponse chr = new ChallengeResponse(ChallengeScheme.HTTP_OAUTH_BEARER);
         chr.setRawValue(access_token);
         cr.setChallengeResponse(chr);
