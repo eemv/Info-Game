@@ -5,19 +5,5 @@
         "clientSecret": "b28a27b870834929926d190128178289",
         "authorizationFormUrl": "https://accounts.spotify.com/authorize",
         "scopes": ["playlist-read-private","playlist-modify-private","playlist-modify-public"]
-    },
-    "Twitch": {
-        "tokenUrl": "https://api.twitch.tv/kraken/",
-        "clientId": "3u7g0x9c0bcoz644h5ryrjiqsqqgsf",
-        "clientSecret": "6z7xayco6bzhpeow9f13sr627mquyz",
-        "authorizationFormUrl": "https://id.twitch.tv/oauth2/validate",
-        "scopes": ["channel_stream","channel_subscriptions","channel_read"]
-    },"IGDB": {
-        "tokenUrl": "https://www.igdb.com/oauth/token.json",
-        "clientId": "",
-        "clientSecret": "",
-        "authorizationFormUrl": "https://www.igdb.com/oauth/authorize",
-        "scopes": "public"
     }
-    
 }		

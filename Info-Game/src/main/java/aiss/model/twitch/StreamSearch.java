@@ -1,6 +1,7 @@
-package aiss.model.spotify;
+package aiss.model.twitch;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import com.fasterxml.jackson.annotation.JsonAnyGetter;
 import com.fasterxml.jackson.annotation.JsonAnySetter;
@@ -11,23 +12,36 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
 @JsonInclude(JsonInclude.Include.NON_NULL)
 @JsonPropertyOrder({
-"playlists"
+"_total",
+"streams"
 })
-public class Playlists {
+public class StreamSearch {
 
-@JsonProperty("playlists")
-private Playlists_ playlists;
+@JsonProperty("_total")
+private Integer total;
+@JsonProperty("streams")
+private List<Stream> streams = null;
 @JsonIgnore
 private Map<String, Object> additionalProperties = new HashMap<String, Object>();
 
-@JsonProperty("playlists")
-public Playlists_ getPlaylists() {
-return playlists;
+@JsonProperty("_total")
+public Integer getTotal() {
+return total;
 }
 
-@JsonProperty("playlists")
-public void setPlaylists(Playlists_ playlists) {
-this.playlists = playlists;
+@JsonProperty("_total")
+public void setTotal(Integer total) {
+this.total = total;
+}
+
+@JsonProperty("streams")
+public List<Stream> getStreams() {
+return streams;
+}
+
+@JsonProperty("streams")
+public void setStreams(List<Stream> streams) {
+this.streams = streams;
 }
 
 @JsonAnyGetter
