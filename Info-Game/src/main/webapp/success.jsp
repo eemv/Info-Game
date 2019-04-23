@@ -13,8 +13,8 @@
 
 <fieldset id="spotify">
 <legend>Spotify search for <c:out value="${param.searchQuery}"/></legend>
-<c:forEach items="${requestScope.playlists}" var="playlist">
-	<span>Playlist title: <c:out value="${playlist.title}"/></span><br/>
+<c:forEach items="${requestScope.playlists}" var="item">
+	<span>Playlist title: <c:out value="${item.name}"/></span><br/>
 </c:forEach>
 </fieldset>
 <!--  

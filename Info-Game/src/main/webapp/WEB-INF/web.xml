@@ -36,7 +36,7 @@
         </init-param>
         <init-param>
             <param-name>onSuccess</param-name>
-            <param-value>redirect:/<!-- esto no funciona  -->SearchController</param-value>
+            <param-value>redirect:/searchController</param-value>
         </init-param>
     </servlet>
     <servlet-mapping>
@@ -45,11 +45,11 @@
 </servlet-mapping>
 	<!--SpotifySearchController-->
 	<servlet>
-    <servlet-name>SearchController</servlet-name>
+    <servlet-name>searchController</servlet-name>
     <servlet-class>aiss.controller.search.SearchController</servlet-class>
   </servlet>
   <servlet-mapping>
-    <servlet-name>SearchController</servlet-name>
+    <servlet-name>searchController</servlet-name>
     <url-pattern>/searchController</url-pattern>
   </servlet-mapping>
   

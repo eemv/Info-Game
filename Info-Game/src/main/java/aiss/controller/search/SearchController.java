@@ -46,10 +46,11 @@ public class SearchController extends HttpServlet {
 				
 		        if(query != null  && query != "") {
 		        	if (accessToken != null && !"".equals(accessToken)) {
-
+		        		log.log(Level.FINE, "Searching for Spotify playlists that containn " + query);
 		        		SpotifyResource spResource = new SpotifyResource(accessToken);
 		        		Playlists spotifyResults = spResource.searchPlaylist(query);
 		        		if (spotifyResults!=null){
+		        			log.log(Level.FINE, "La playlist no es null");
 		        			rd = request.getRequestDispatcher("/success.jsp");
 		        			request.setAttribute("playlists", spotifyResults.getItems());
 		        		} else {
