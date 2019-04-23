@@ -27,7 +27,7 @@ import com.mashape.unirest.http.exceptions.UnirestException;
 import aiss.model.igdb.Game;
 
 public class IGDBResource {
-	 private static final Logger log = Logger.getLogger(SpotifyResource.class.getName());
+	 private static final Logger log = Logger.getLogger(IGDBResource.class.getName());
 
 	    private final String userKey = "52d6ccf6c9252094bad3790904e8ad03";
 	    private final String baseURL = "https://api-v3.igdb.com";
