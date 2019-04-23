@@ -62,7 +62,7 @@ public class SearchController extends HttpServlet {
 		        		log.info("Trying to access Spotify without an access token, redirecting to OAuth servlet");
 		        		request.getRequestDispatcher("/AuthController/Spotify").forward(request, response);
 		        	}
-		        	if()
+		        	
 		        }else {
 		        	request.getRequestDispatcher("/success.jsp");
 		        }
