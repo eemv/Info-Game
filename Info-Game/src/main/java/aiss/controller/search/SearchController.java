@@ -12,8 +12,10 @@ import javax.servlet.http.HttpServletResponse;
 
 import aiss.model.resources.SpotifyResource;
 import aiss.model.resources.TwitchResource;
+import aiss.model.resources.YoutubeResource;
 import aiss.model.spotify.Playlists;
 import aiss.model.twitch.StreamSearch;
+import aiss.model.youtube.VideoSearch;
 
 
 
@@ -42,9 +44,9 @@ public class SearchController extends HttpServlet {
 		RequestDispatcher rd = null;
 		
 
-				log.log(Level.FINE, "Searching for Spotify playlists that contain " + query);
 				String accessToken = (String) request.getSession().getAttribute("Spotify-token");
 				String accessTokenTW = (String) request.getSession().getAttribute("Twitch-token");
+				String accessTokenYT = (String) request.getSession().getAttribute("Youtube-token");
 				
 		        if(query != null  && query != "") {
 		        	if (accessToken != null && !"".equals(accessToken)) {
@@ -68,24 +70,44 @@ public class SearchController extends HttpServlet {
 		        		request.getRequestDispatcher("/AuthController/Spotify").forward(request, response);
 		        	}
 		        	
-		        	if (accessTokenTW != null && !"".equals(accessTokenTW)) {
-			        	log.log(Level.FINE, "Searching for Twitch playlists that containn " + query);
-			        	TwitchResource twResource = new TwitchResource(accessTokenTW);
-			        	StreamSearch twitchResults = twResource.searchStreams(query);
-			        		
-			        	if (twitchResults!=null){
-			        		log.log(Level.FINE, "La playlist no es null");
-			  
-			        		rd = request.getRequestDispatcher("/success.jsp");
-			        		request.setAttribute("streams", twitchResults.getStreams());
-			        	} else {
-			        		log.log(Level.SEVERE, "Twitch object: " + twitchResults);
-			        		rd = request.getRequestDispatcher("/error.jsp");
-			        	}
-			        	rd.forward(request, response);
+//		        	if (accessTokenTW != null && !"".equals(accessTokenTW)) {
+//			        	log.log(Level.FINE, "Searching for Twitch playlists that containn " + query);
+//			        	TwitchResource twResource = new TwitchResource(accessTokenTW);
+//			        	StreamSearch twitchResults = twResource.searchStreams(query);
+//			        		
+//			        	if (twitchResults!=null){
+//			        		log.log(Level.FINE, "La playlist no es null");
+//			  
+//			        		rd = request.getRequestDispatcher("/success.jsp");
+//			        		request.setAttribute("streams", twitchResults.getStreams());
+//			        	} else {
+//			        		log.log(Level.SEVERE, "Twitch object: " + twitchResults);
+//			        		rd = request.getRequestDispatcher("/error.jsp");
+//			        	}
+//			        	rd.forward(request, response);
+//		        	}else {
+//		        		log.info("Trying to access Twitch without an access token, redirecting to OAuth servlet");
+//		        		request.getRequestDispatcher("/AuthController/Twitch").forward(request, response);
+//		        	}
+		           	if (accessTokenYT != null && !"".equals(accessTokenYT)) {
+		        		log.log(Level.FINE, "Searching for Youtube videos that containn " + query);
+		        		YoutubeResource ytResource = new YoutubeResource(accessTokenYT);
+		        	
+		        		VideoSearch ytResults = ytResource.searchVideos(query);
+		        				        		
+		        		if (ytResults!=null){
+		        			log.log(Level.FINE, "Los videos no es null");
+		  
+		        			rd = request.getRequestDispatcher("/success.jsp");
+		        			request.setAttribute("videos", ytResults.getItems());
+		        		} else {
+		        			log.log(Level.SEVERE, "YT object: " + ytResults);
+		        			rd = request.getRequestDispatcher("/error.jsp");
+		        		}
+		        		rd.forward(request, response);
 		        	}else {
-		        		log.info("Trying to access Twitch without an access token, redirecting to OAuth servlet");
-		        		request.getRequestDispatcher("/AuthController/Twitch").forward(request, response);
+		        		log.info("Trying to access YT without an access token, redirecting to OAuth servlet");
+		        		request.getRequestDispatcher("/AuthController/Youtube").forward(request, response);
 		        	}
 		        }else {
 		        	request.getRequestDispatcher("/success.jsp");
