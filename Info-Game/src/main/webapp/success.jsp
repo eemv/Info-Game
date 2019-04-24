@@ -30,5 +30,12 @@
 	
 
 -->	
+<fieldset id="youtube">
+<legend>Youtube search for <c:out value="${param.searchQuery}"/></legend>
+<c:forEach items="${requestScope.videos}" var="video">
+<span>Video title: <c:out value="${video.snippet.title}"/></span><br/>
+</c:forEach>
+</fieldset>
+
 </body>
 </html>
