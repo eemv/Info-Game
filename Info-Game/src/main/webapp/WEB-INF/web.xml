@@ -3,14 +3,6 @@
 	xmlns="http://java.sun.com/xml/ns/javaee" xmlns:web="http://java.sun.com/xml/ns/javaee"
 	xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd"
 	version="2.5">
-	<servlet>
-		<servlet-name>HelloWorld</servlet-name>
-		<servlet-class>aiss.HelloWorldServlet</servlet-class>
-	</servlet>
-	<servlet-mapping>
-		<servlet-name>HelloWorld</servlet-name>
-		<url-pattern>/helloworld</url-pattern>
-	</servlet-mapping>
 	
 	<servlet>
         <description/>
@@ -43,7 +35,7 @@
         <servlet-name>SpotifyOAuth2Callback</servlet-name>
         <url-pattern>/oauth2callback/Spotify</url-pattern> 
 </servlet-mapping>
-	<!--SpotifySearchController-->
+	<!--SearchController-->
 	<servlet>
     <servlet-name>searchController</servlet-name>
     <servlet-class>aiss.controller.search.SearchController</servlet-class>
@@ -52,6 +44,37 @@
     <servlet-name>searchController</servlet-name>
     <url-pattern>/searchController</url-pattern>
   </servlet-mapping>
+  <!--Twitch-->
+  <servlet>
+  <description/>
+  <servlet-name>TwitchAuthController</servlet-name>
+        <servlet-class>aiss.controller.oauth.GenericAuthController</servlet-class>
+        <init-param>
+            <param-name>provider</param-name>
+            <param-value>Twitch</param-value>
+        </init-param>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>TwitchAuthController</servlet-name>
+        <url-pattern>/AuthController/Twitch</url-pattern>
+    </servlet-mapping>
+<servlet>
+        <description/>
+        <servlet-name>TwitchOAuth2Callback</servlet-name>
+        <servlet-class>aiss.controller.oauth.OAuth2Callback</servlet-class>
+        <init-param>
+            <param-name>provider</param-name>
+            <param-value>Twitch</param-value>
+        </init-param>
+        <init-param>
+            <param-name>onSuccess</param-name>
+            <param-value>redirect:/searchController</param-value>
+        </init-param>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>TwitchOAuth2Callback</servlet-name>
+        <url-pattern>/oauth2callback/Twitch</url-pattern> 
+</servlet-mapping>
   
 
   

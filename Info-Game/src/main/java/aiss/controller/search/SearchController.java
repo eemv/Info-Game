@@ -44,16 +44,15 @@ public class SearchController extends HttpServlet {
 
 				log.log(Level.FINE, "Searching for Spotify playlists that contain " + query);
 				String accessToken = (String) request.getSession().getAttribute("Spotify-token");
-//				String accessTokenTW = (String) request.getSession().getAttribute("Twitch-token");
+				String accessTokenTW = (String) request.getSession().getAttribute("Twitch-token");
 				
 		        if(query != null  && query != "") {
 		        	if (accessToken != null && !"".equals(accessToken)) {
 		        		log.log(Level.FINE, "Searching for Spotify playlists that containn " + query);
 		        		SpotifyResource spResource = new SpotifyResource(accessToken);
-//		        		TwitchResource twResource = new TwitchResource(accessTokenTW);
+		        	
 		        		Playlists spotifyResults = spResource.searchPlaylist(query);
-//		        		StreamSearch twitchResults = twResource.searchStreams(query);
-		        		
+		        				        		
 		        		if (spotifyResults!=null){
 		        			log.log(Level.FINE, "La playlist no es null");
 		  
@@ -63,6 +62,37 @@ public class SearchController extends HttpServlet {
 		        			log.log(Level.SEVERE, "Spotify object: " + spotifyResults);
 		        			rd = request.getRequestDispatcher("/error.jsp");
 		        		}
+		        		rd.forward(request, response);
+		        	}else {
+		        		log.info("Trying to access Spotify without an access token, redirecting to OAuth servlet");
+		        		request.getRequestDispatcher("/AuthController/Spotify").forward(request, response);
+		        	}
+		        	
+		        	if (accessTokenTW != null && !"".equals(accessTokenTW)) {
+			        	log.log(Level.FINE, "Searching for Twitch playlists that containn " + query);
+			        	TwitchResource twResource = new TwitchResource(accessTokenTW);
+			        	StreamSearch twitchResults = twResource.searchStreams(query);
+			        		
+			        	if (twitchResults!=null){
+			        		log.log(Level.FINE, "La playlist no es null");
+			  
+			        		rd = request.getRequestDispatcher("/success.jsp");
+			        		request.setAttribute("streams", twitchResults.getStreams());
+			        	} else {
+			        		log.log(Level.SEVERE, "Twitch object: " + twitchResults);
+			        		rd = request.getRequestDispatcher("/error.jsp");
+			        	}
+			        	rd.forward(request, response);
+		        	}else {
+		        		log.info("Trying to access Twitch without an access token, redirecting to OAuth servlet");
+		        		request.getRequestDispatcher("/AuthController/Twitch").forward(request, response);
+		        	}
+		        }else {
+		        	request.getRequestDispatcher("/success.jsp");
+		        }
+		      
+	}
+		        	
 //		        		if (twitchResults!=null){
 //		        			log.log(Level.FINE, "Los streams no son null");
 //		        			rd = request.getRequestDispatcher("/success.jsp");
@@ -91,18 +121,8 @@ public class SearchController extends HttpServlet {
 //		        	        "authorizationFormUrl": "https://www.igdb.com/oauth/authorize",
 //		        	        "scopes": "public"
 //		        	    }
-		        		rd.forward(request, response);
-
-		        	} else {
-		        		log.info("Trying to access Spotify without an access token, redirecting to OAuth servlet");
-		        		request.getRequestDispatcher("/AuthController/Spotify").forward(request, response);
-		        	}
-		        	
-		        }else {
-		        	request.getRequestDispatcher("/success.jsp");
-		        }
 		    
-		    }
+
 				
 				
 		
