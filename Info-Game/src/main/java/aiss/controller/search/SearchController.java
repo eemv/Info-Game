@@ -85,11 +85,7 @@ public class SearchController extends HttpServlet {
 //			        		log.log(Level.SEVERE, "Twitch object: " + twitchResults);
 //			        		rd = request.getRequestDispatcher("/error.jsp");
 //			        	}
-//			        	rd.forward(request, response);
-//		        	}else {
-//		        		log.info("Trying to access Twitch without an access token, redirecting to OAuth servlet");
-//		        		request.getRequestDispatcher("/AuthController/Twitch").forward(request, response);
-//		        	}
+			        	
 		           	if (accessTokenYT != null && !"".equals(accessTokenYT)) {
 		        		log.log(Level.FINE, "Searching for Youtube videos that containn " + query);
 		        		YoutubeResource ytResource = new YoutubeResource(accessTokenYT);
@@ -111,7 +107,7 @@ public class SearchController extends HttpServlet {
 		        }else {
 		        	request.getRequestDispatcher("/success.jsp");
 		        }
-		           	
+//		        	}	
 		     }
 		        	rd.forward(request, response);
 		 }

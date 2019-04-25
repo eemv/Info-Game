@@ -47,6 +47,19 @@
     				</c:choose>
                      </li>
                 </ul>
+         <li><strong>Twitch:</strong>
+                <ul>
+                    <li><c:choose>
+                    <c:when test='${{sessionScope["Twitch-token"]} != null }'>
+             <!--         <c:out value='${sessionScope["Twitch-token"]}' ></c:out> -->
+                    Token de Twitch cargado
+                     </c:when>
+                      <c:otherwise>
+        				Debe de logearse en Twitch <a href="AuthController/Twitch">aquí</a>
+    					</c:otherwise>
+    				</c:choose>
+                     </li>
+                     </ul>
             </li>
         </ul>
 	
