@@ -3,7 +3,9 @@
 	xmlns="http://java.sun.com/xml/ns/javaee" xmlns:web="http://java.sun.com/xml/ns/javaee"
 	xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd"
 	version="2.5">
-	
+	  <welcome-file-list>
+        <welcome-file>login.jsp</welcome-file>
+    </welcome-file-list>
 	<servlet>
         <description/>
         <servlet-name>SpotifyAuthController</servlet-name>
@@ -28,7 +30,7 @@
         </init-param>
         <init-param>
             <param-name>onSuccess</param-name>
-            <param-value>redirect:/searchController</param-value>
+            <param-value>redirect:/login.jsp</param-value>
         </init-param>
     </servlet>
     <servlet-mapping>
@@ -100,7 +102,7 @@
         </init-param>
         <init-param>
             <param-name>onSuccess</param-name>
-            <param-value>redirect:/searchController</param-value>
+            <param-value>redirect:/login.jsp</param-value>
         </init-param>
     </servlet>
     <servlet-mapping>

@@ -66,13 +66,9 @@ public class SearchController extends HttpServlet {
 		        			log.log(Level.SEVERE, "Spotify object: " + spotifyResults);
 		        			rd = request.getRequestDispatcher("/error.jsp");
 		        		}
-		        		rd.forward(request, response);
-		        	}else {
-		        		log.info("Trying to access Spotify without an access token, redirecting to OAuth servlet");
-		        		request.getRequestDispatcher("/AuthController/Spotify").forward(request, response);
 		        		
-		        	}
-		        	response.getOutputStream().flush();
+		 
+		        	
 		        	
 //		        	if (accessTokenTW != null && !"".equals(accessTokenTW)) {
 //		        		
@@ -109,17 +105,16 @@ public class SearchController extends HttpServlet {
 		        			log.log(Level.SEVERE, "YT object: " + ytResults);
 		        			rd = request.getRequestDispatcher("/error.jsp");
 		        		}
-		        		rd.forward(request, response);
-		        	}else {
-		        		log.info("Trying to access YT without an access token, redirecting to OAuth servlet");
-		        		request.getRequestDispatcher("/AuthController/Youtube").forward(request, response);
 		        		
-		        	}
+		        	
+		        	
 		        }else {
 		        	request.getRequestDispatcher("/success.jsp");
 		        }
-		        
-		        response.getOutputStream().close();
+		           	
+		     }
+		        	rd.forward(request, response);
+		 }
 	}
 		        	
 //		        		if (twitchResults!=null){
