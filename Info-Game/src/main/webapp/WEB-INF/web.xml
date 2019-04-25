@@ -37,6 +37,7 @@
 </servlet-mapping>
 	<!--SearchController-->
 	<servlet>
+	
     <servlet-name>searchController</servlet-name>
     <servlet-class>aiss.controller.search.SearchController</servlet-class>
   </servlet>

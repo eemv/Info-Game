@@ -23,6 +23,7 @@ import aiss.model.youtube.VideoSearch;
  * Servlet implementation class SearchController
  */
 public class SearchController extends HttpServlet {
+	
 	private static final long serialVersionUID = 1L;
        
 	private static final Logger log = Logger.getLogger(SearchController.class.getName());
@@ -43,6 +44,7 @@ public class SearchController extends HttpServlet {
 		String query = request.getParameter("searchQuery");
 		RequestDispatcher rd = null;
 		
+		 
 
 				String accessToken = (String) request.getSession().getAttribute("Spotify-token");
 				String accessTokenTW = (String) request.getSession().getAttribute("Twitch-token");
@@ -68,9 +70,12 @@ public class SearchController extends HttpServlet {
 		        	}else {
 		        		log.info("Trying to access Spotify without an access token, redirecting to OAuth servlet");
 		        		request.getRequestDispatcher("/AuthController/Spotify").forward(request, response);
+		        		
 		        	}
+		        	response.getOutputStream().flush();
 		        	
 //		        	if (accessTokenTW != null && !"".equals(accessTokenTW)) {
+//		        		
 //			        	log.log(Level.FINE, "Searching for Twitch playlists that containn " + query);
 //			        	TwitchResource twResource = new TwitchResource(accessTokenTW);
 //			        	StreamSearch twitchResults = twResource.searchStreams(query);
@@ -108,11 +113,13 @@ public class SearchController extends HttpServlet {
 		        	}else {
 		        		log.info("Trying to access YT without an access token, redirecting to OAuth servlet");
 		        		request.getRequestDispatcher("/AuthController/Youtube").forward(request, response);
+		        		
 		        	}
 		        }else {
 		        	request.getRequestDispatcher("/success.jsp");
 		        }
-		      
+		        
+		        response.getOutputStream().close();
 	}
 		        	
 //		        		if (twitchResults!=null){
