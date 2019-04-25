@@ -8,29 +8,47 @@
 <title>Insert title here</title>
 </head>
 <body>
+  
 <a href="AuthController/Spotify" >spoti</a>
 <a href="AuthController/Twitch" >twitch</a>
 <a href="AuthController/Youtube">yt</a>
-        <h2> Tokens de OAuth </h2>
-        <ul>
-            <li><strong>Youtube:</strong>
-                <ul>
-                    <li><c:out value='${sessionScope["Youtube-token"]}' /> </li>
-                </ul>
-            </li>
-            <li><strong>Spotify:</strong>
-                <ul>
-                    <li><c:out value='${sessionScope["Spotify-token"]}' /> </li>
-                </ul>
-            </li>
-        </ul>
-        <div id="searchDiv">
+     
+	<div id="searchDiv">
 		<form id="searchForm" action="searchController" method="post">
 			<input type="text" name="searchQuery" required/> 
 			<input type="submit" name="searchBtn" title="search" value="search">
 		</form>
 	</div>
-        
-	<a href="searchbar.jsp">a</a>
+	
+        <h2> Tokens de OAuth </h2>
+        <ul>
+            <li><strong>Youtube:</strong>
+                <ul>
+                    <li><c:choose>
+                    <c:when test='${{sessionScope["Youtube-token"]} != null }'>
+             <!--         <c:out value='${sessionScope["Spotify-token"]}' ></c:out> -->
+                    Token de Youtube cargado
+                     </c:when>
+                      <c:otherwise>
+        				Debe de logearse en Youtube <a href="AuthController/Youtube">aquí</a>
+    					</c:otherwise>
+    				</c:choose>
+                     </li>
+                     </ul>
+            <li><strong>Spotify:</strong>
+                <ul>
+                    <li><c:choose>
+                    <c:when test='${{sessionScope["Spotify-token"]} != null }'>
+                    Token de Spotify cargado
+                     </c:when>
+                      <c:otherwise>
+        				Debe de logearse en Spotify <a href="AuthController/Spotify" >aquí</a>
+    					</c:otherwise>
+    				</c:choose>
+                     </li>
+                </ul>
+            </li>
+        </ul>
+	
 </body>
 </html>
