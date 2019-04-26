@@ -11,8 +11,9 @@
 		"tokenUrl": "https://api.twitch.tv/kraken/oauth2/token",
 		"clientId": "3u7g0x9c0bcoz644h5ryrjiqsqqgsf",
 		"clientSecret": "6z7xayco6bzhpeow9f13sr627mquyz",
-		"authorizationFormUrl": "https://api.twitch.tv/kraken/oauth2/authorize",
-		"scopes": ["viewing_activity_read"]
+		"authorizationFormUrl": "https://id.twitch.tv/oauth2/authorize",
+		"scopes":[""]
+
 	},
 	"Youtube": {
 		"tokenUrl": "https://www.googleapis.com/oauth2/v4/token",

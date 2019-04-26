@@ -10,14 +10,14 @@ import org.restlet.data.ChallengeScheme;
 import org.restlet.resource.ClientResource;
 import org.restlet.resource.ResourceException;
 
-import aiss.model.spotify.Playlists;
-import aiss.model.twitch.Stream;
+import aiss.model.twitch.Game;
+import aiss.model.twitch.GameSearch;
 import aiss.model.twitch.StreamSearch;
 
 public class TwitchResource {
 	private static final Logger log = Logger.getLogger(TwitchResource.class.getName());
 	private final String access_token;
-    private final String baseURL = "https://api.twitch.tv/kraken/";
+    private final String baseURL = "https://api.twitch.tv/helix/";
 
     public TwitchResource(String access_token) {
         this.access_token = access_token;
@@ -25,21 +25,32 @@ public class TwitchResource {
     
  public StreamSearch searchStreams(String query) throws UnsupportedEncodingException {
     	
-    	String queryFormatted = "?game=" + URLEncoder.encode(query, "UTF-8");
-    	String URLSearchStreams = baseURL + "/search/streams" + queryFormatted + "?limit=5";
-    	ClientResource cr = new ClientResource(URLSearchStreams);  
+	 
+	 //Necesitamos tomar la ID del juego antes de pedir sus streams
+    	String queryFormatted = "?name=" + URLEncoder.encode(query, "UTF-8");
+    	String URLSearchGame = baseURL + "/games" + queryFormatted;
+    	
+    	ClientResource cr = new ClientResource(URLSearchGame);  
     	ChallengeResponse chr = new ChallengeResponse(ChallengeScheme.HTTP_OAUTH_BEARER);
         chr.setRawValue(access_token);
         cr.setChallengeResponse(chr);
     	
-        StreamSearch streams = null;
+        GameSearch games = null;
         try {
-            streams = cr.get(StreamSearch.class);
+            games = cr.get(GameSearch.class);
+            List<Game> lista = games.getData();
+            Game juego = lista.get(0);
+            String URLSearchStreams = baseURL + "/streams?game_id=" + juego.getId() + "?limit=5";
+            ClientResource cr1 = new ClientResource(URLSearchStreams);  
+        	ChallengeResponse chr1 = new ChallengeResponse(ChallengeScheme.HTTP_OAUTH_BEARER);
+            chr1.setRawValue(access_token);
+            cr1.setChallengeResponse(chr1);
+            StreamSearch streams = cr1.get(StreamSearch.class);
             return streams;
 
         } catch (ResourceException re) {
             log.warning("Error when retrieving Twitch streams: " + cr.getResponse().getStatus());
-            log.warning(URLSearchStreams);
+            log.warning(URLSearchGame);
             return null;
         }
     	

@@ -70,21 +70,21 @@ public class SearchController extends HttpServlet {
 		 
 		        	
 		        	
-//		        	if (accessTokenTW != null && !"".equals(accessTokenTW)) {
-//		        		
-//			        	log.log(Level.FINE, "Searching for Twitch playlists that containn " + query);
-//			        	TwitchResource twResource = new TwitchResource(accessTokenTW);
-//			        	StreamSearch twitchResults = twResource.searchStreams(query);
-//			        		
-//			        	if (twitchResults!=null){
-//			        		log.log(Level.FINE, "La playlist no es null");
-//			  
-//			        		rd = request.getRequestDispatcher("/success.jsp");
-//			        		request.setAttribute("streams", twitchResults.getStreams());
-//			        	} else {
-//			        		log.log(Level.SEVERE, "Twitch object: " + twitchResults);
-//			        		rd = request.getRequestDispatcher("/error.jsp");
-//			        	}
+		        	if (accessTokenTW != null && !"".equals(accessTokenTW)) {
+		        		
+			        	log.log(Level.FINE, "Searching for Twitch playlists that containn " + query);
+			        	TwitchResource twResource = new TwitchResource(accessTokenTW);
+			        	StreamSearch twitchResults = twResource.searchStreams(query);
+			        		
+			        	if (twitchResults!=null){
+			        		log.log(Level.FINE, "La playlist no es null");
+			  
+			        		rd = request.getRequestDispatcher("/success.jsp");
+			        		request.setAttribute("streams", twitchResults.getStreams());
+			        	} else {
+			        		log.log(Level.SEVERE, "Twitch object: " + twitchResults);
+			        		rd = request.getRequestDispatcher("/error.jsp");
+			        	}
 			        	
 		           	if (accessTokenYT != null && !"".equals(accessTokenYT)) {
 		        		log.log(Level.FINE, "Searching for Youtube videos that containn " + query);
@@ -107,7 +107,7 @@ public class SearchController extends HttpServlet {
 		        }else {
 		        	request.getRequestDispatcher("/success.jsp");
 		        }
-//		        	}	
+		        	}	
 		     }
 		        	rd.forward(request, response);
 		 }
