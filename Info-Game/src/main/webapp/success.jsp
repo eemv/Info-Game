@@ -36,6 +36,14 @@
 <span>Video title: <c:out value="${video.snippet.title}"/></span><br/>
 </c:forEach>
 </fieldset>
+<fieldset id="reddit">
+	<legend>Reddit search for <c:out value="${param.searchQuery}"/></legend>
+	<ul>
+		<c:forEach items="${requestScope.posts}" var="post">
+			<li><a href='http://www.reddit.com<c:out value="${post.permalink}"/>'><c:out value="${post.title}"/></a></li>
+		</c:forEach>
+	</ul>
+</fieldset>
 
 </body>
 </html>

@@ -17,12 +17,25 @@ import aiss.model.twitch.StreamSearch;
 public class TwitchResource {
 	private static final Logger log = Logger.getLogger(TwitchResource.class.getName());
 	private final String access_token;
-    private final String baseURL = "https://api.twitch.tv/helix/";
-
+	private static final String TWITCH_API_KEY = "3u7g0x9c0bcoz644h5ryrjiqsqqgsf";
+    private final String baseURL = "https://api.twitch.tv/kraken/";
+    
+//    public TwitchResource() {
+//       
+//    }
+    
     public TwitchResource(String access_token) {
         this.access_token = access_token;
     }
-    
+    public StreamSearch searchStreams2(String query) throws UnsupportedEncodingException {
+    	String uri = baseURL + "search/streams?query=" + URLEncoder.encode(query, "UTF-8");
+    	ClientResource cr= new ClientResource(uri);
+    	cr.setAttribute("Client-ID", TWITCH_API_KEY);
+    	StreamSearch result = cr.get(StreamSearch.class);
+    	return result;
+    }
+	
+
  public StreamSearch searchStreams(String query) throws UnsupportedEncodingException {
     	
 	 

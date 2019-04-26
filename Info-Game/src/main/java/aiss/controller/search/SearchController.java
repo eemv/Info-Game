@@ -10,6 +10,9 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import aiss.model.reddit.Post;
+import aiss.model.reddit.RedditSearch;
+import aiss.model.resources.RedditResource;
 import aiss.model.resources.SpotifyResource;
 import aiss.model.resources.TwitchResource;
 import aiss.model.resources.YoutubeResource;
@@ -49,6 +52,7 @@ public class SearchController extends HttpServlet {
 				String accessToken = (String) request.getSession().getAttribute("Spotify-token");
 				String accessTokenTW = (String) request.getSession().getAttribute("Twitch-token");
 				String accessTokenYT = (String) request.getSession().getAttribute("Youtube-token");
+				String accessTokenRE = (String) request.getSession().getAttribute("Reddit-token");
 				
 		        if(query != null  && query != "") {
 		        	if (accessToken != null && !"".equals(accessToken)) {
@@ -66,25 +70,28 @@ public class SearchController extends HttpServlet {
 		        			log.log(Level.SEVERE, "Spotify object: " + spotifyResults);
 		        			rd = request.getRequestDispatcher("/error.jsp");
 		        		}
-		        		
-		 
-		        	
-		        	
-		        	if (accessTokenTW != null && !"".equals(accessTokenTW)) {
-		        		
-			        	log.log(Level.FINE, "Searching for Twitch playlists that containn " + query);
-			        	TwitchResource twResource = new TwitchResource(accessTokenTW);
-			        	StreamSearch twitchResults = twResource.searchStreams(query);
-			        		
-			        	if (twitchResults!=null){
-			        		log.log(Level.FINE, "La playlist no es null");
-			  
-			        		rd = request.getRequestDispatcher("/success.jsp");
-			        		request.setAttribute("streams", twitchResults.getStreams());
-			        	} else {
-			        		log.log(Level.SEVERE, "Twitch object: " + twitchResults);
-			        		rd = request.getRequestDispatcher("/error.jsp");
-			        	}
+//		        		
+//		        		log.log(Level.FINE, "Searching for Twitch playlists that containn " + query);
+//		        		TwitchResource twResource = new TwitchResource();
+//		        		StreamSearch sts=twResource.searchStreams2(query);
+//		        		if(sts!=null) {
+//		        		request.setAttribute("streams", sts.getStreams());
+//		        	}
+//		        	if (accessTokenTW != null && !"".equals(accessTokenTW)) {
+//		        		
+//			        	log.log(Level.FINE, "Searching for Twitch playlists that containn " + query);
+//			        	TwitchResource twResource = new TwitchResource(accessTokenTW);
+//			        	StreamSearch twitchResults = twResource.searchStreams(query);
+//			        		
+//			        	if (twitchResults!=null){
+//			        		log.log(Level.FINE, "La playlist no es null");
+//			  
+//			        		rd = request.getRequestDispatcher("/success.jsp");
+//			        		request.setAttribute("streams", twitchResults.getStreams());
+//			        	} else {
+//			        		log.log(Level.SEVERE, "Twitch object: " + twitchResults);
+//			        		rd = request.getRequestDispatcher("/error.jsp");
+//			        	}
 			        	
 		           	if (accessTokenYT != null && !"".equals(accessTokenYT)) {
 		        		log.log(Level.FINE, "Searching for Youtube videos that containn " + query);
@@ -102,7 +109,22 @@ public class SearchController extends HttpServlet {
 		        			rd = request.getRequestDispatcher("/error.jsp");
 		        		}
 		        		
-		        	
+//		        	if (accessTokenRE != null && !"".equals(accessTokenRE)) {
+//			        		log.log(Level.FINE, "Searching for Reddit that containn " + query);
+//			        		RedditResource REResource = new RedditResource(accessTokenRE);
+//			        	
+//			        		RedditSearch<Post> REResults = REResource.getPosts(query);
+//			        				        		
+//			        		if (REResults!=null){
+//			        			log.log(Level.FINE, "Los resultados de reddit no es null");
+//			  
+//			        			rd = request.getRequestDispatcher("/success.jsp");
+//			        			request.setAttribute("posts", REResults.getData());
+//			        		} else {
+//			        			log.log(Level.SEVERE, "RE object: " + ytResults);
+//			        			rd = request.getRequestDispatcher("/error.jsp");
+//			        		}  		
+//		        	
 		        	
 		        }else {
 		        	request.getRequestDispatcher("/success.jsp");
@@ -111,61 +133,9 @@ public class SearchController extends HttpServlet {
 		     }
 		        	rd.forward(request, response);
 		 }
-	}
-		        	
-//		        		if (twitchResults!=null){
-//		        			log.log(Level.FINE, "Los streams no son null");
-//		        			rd = request.getRequestDispatcher("/success.jsp");
-//		        			request.setAttribute("streams", twitchResults.getStreams());
-//		        		} else {
-//		        			log.log(Level.SEVERE, "Twitch object: " + twitchResults);
-//		        			rd = request.getRequestDispatcher("/error.jsp");
-//		        		}
-//		        		 "Spotify": {
-//		        	        "tokenUrl": "https://accounts.spotify.com/api/token ",
-//		        	        "clientId": "7b3a8ef6db4b47d59177f2d406e9be9e",
-//		        	        "clientSecret": "b28a27b870834929926d190128178289",
-//		        	        "authorizationFormUrl": "https://accounts.spotify.com/authorize",
-//		        	        "scopes": ["playlist-read-private","playlist-modify-private","playlist-modify-public"]
-//		        	    },
-//		        	    "Twitch": {
-//		        	        "tokenUrl": "https://api.twitch.tv/kraken/",
-//		        	        "clientId": "3u7g0x9c0bcoz644h5ryrjiqsqqgsf",
-//		        	        "clientSecret": "6z7xayco6bzhpeow9f13sr627mquyz",
-//		        	        "authorizationFormUrl": "https://id.twitch.tv/oauth2/validate",
-//		        	        "scopes": ["channel_stream","channel_subscriptions","channel_read"]
-//		        	    },"IGDB": {
-//		        	        "tokenUrl": "https://www.igdb.com/oauth/token.json",
-//		        	        "clientId": "",
-//		        	        "clientSecret": "",
-//		        	        "authorizationFormUrl": "https://www.igdb.com/oauth/authorize",
-//		        	        "scopes": "public"
-//		        	    }
-		    
-
-				
-				
-		
-//		// Search for movies in OMDb
-//		log.log(Level.FINE, "Searching for OMDb movies that contain " + query);
-//		OMDbResource omdb = new OMDbResource();
-//		MovieSearch omdbResults = omdb.getMovies(query);
-//
-//		log.log(Level.FINE, "Searching for flickr photos that contain " + query);
-//		FlickrResource flickr = new FlickrResource();
-//		PhotoSearch flickrResults = flickr.getFlickrPhotos(query);
-//		
-//		if (omdbResults!=null && flickrResults!=null ){
-//			rd = request.getRequestDispatcher("/success.jsp");
-//			request.setAttribute("movies", omdbResults.getSearch());
-//			request.setAttribute("photos", flickrResults.getPhotos());	
-//		} else {
-//			log.log(Level.SEVERE, "OMDb object: " + omdbResults);
-//			rd = request.getRequestDispatcher("/error.jsp");
-//		}
-//		rd.forward(request, response);
+//		    }
 //	}
-		
+		        	
 	
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		doGet(request, response);

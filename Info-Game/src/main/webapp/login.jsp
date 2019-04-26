@@ -12,6 +12,7 @@
 <a href="AuthController/Spotify" >spoti</a>
 <a href="AuthController/Twitch" >twitch</a>
 <a href="AuthController/Youtube">yt</a>
+<a href="AuthController/Reddit">reddit</a>
      
 	<div id="searchDiv">
 		<form id="searchForm" action="searchController" method="post">
@@ -58,10 +59,18 @@
         				Debe de logearse en Twitch <a href="AuthController/Twitch">aquí</a>
     					</c:otherwise>
     				</c:choose>
+                    <li><strong>Reddit:</strong>
+                <ul>
+                    <li><c:choose>
+                    <c:when test='${{sessionScope["Reddit-token"]} != null }'>
+                    Token de Reddit cargado
+                     </c:when>
+                      <c:otherwise>
+        				Debe de logearse en Reddit <a href="AuthController/Reddit" >aquí</a>
+    					</c:otherwise>
+    				</c:choose>
                      </li>
-                     </ul>
-            </li>
-        </ul>
+                </ul>
 	
 </body>
 </html>
