@@ -1,0 +1,68 @@
+swagger: '2.0'
+info:
+  description: Una aplicacion web que busca información del título de un videojuego usando IGDB para obtener un resumen del juego, Spotify para encontrar su banda sonora, Twitch para encontrar streamings de jugadores en el momento, Reddit para acceder a posts y Youtube para ver el trailer.
+  version: "1.0.1"
+  title: Info-Game
+  # put the contact info for your development or API team
+  contact:
+    email: pbiedmafresno@gmail.com
+
+  license:
+    name: Apache 2.0
+    url: http://www.apache.org/licenses/LICENSE-2.0.html
+
+# tags are used for organizing operations
+tags:
+- name: admins
+  description: Secured Admin-only calls
+- name: developers
+  description: Operations available to regular developers
+- name: searchController
+  description: Buscar INFO del juego 
+  
+paths:
+  /playlists/{query}:
+    get:
+      tags:
+      - searchController
+      summary: searches the playlist
+      operationId: searchPlaylist
+      description: |
+        By passing in the appropriate options, you can search for
+        available inventory in the system
+      produces:
+      - application/json
+      parameters:
+      - name: query
+        in: path
+        description: Nombre del titulo del juego que buscas una banda sonara
+        required: true
+        type: string
+      responses:
+        200:
+          description: playlist encontrada
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/Playlist'
+        400:
+          description: bad input parameter
+definitions:
+  Playlist:
+    type: object
+    required:
+    - id
+    - name
+    properties:
+      id:
+        type: string
+        format: uuid
+        example: 6rqhFgbbKwnb9MLmUQDhG6
+      name:
+        type: string
+        example: Fallout's Soundtrack
+      # Added by API Auto Mocking Plugin
+host: info-game-mashup.appspot.com
+basePath: /Info-Game/Info-Game/1.0.0
+schemes:
+ - https
