@@ -1,7 +1,6 @@
-package aiss.model.twitch;
+package aiss.model.wikipedia;
 
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 import com.fasterxml.jackson.annotation.JsonAnyGetter;
 import com.fasterxml.jackson.annotation.JsonAnySetter;
@@ -12,49 +11,36 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
 @JsonInclude(JsonInclude.Include.NON_NULL)
 @JsonPropertyOrder({
-"_total",
-"_links",
-"streams"
+"sroffset",
+"continue"
 })
-public class StreamSearch {
+public class Continue {
 
-@JsonProperty("_total")
-private Integer total;
-@JsonProperty("_links")
-private Links links;
-@JsonProperty("streams")
-private List<Stream> streams = null;
+@JsonProperty("sroffset")
+private Integer sroffset;
+@JsonProperty("continue")
+private String _continue;
 @JsonIgnore
 private Map<String, Object> additionalProperties = new HashMap<String, Object>();
 
-@JsonProperty("_total")
-public Integer getTotal() {
-return total;
+@JsonProperty("sroffset")
+public Integer getSroffset() {
+return sroffset;
 }
 
-@JsonProperty("_total")
-public void setTotal(Integer total) {
-this.total = total;
+@JsonProperty("sroffset")
+public void setSroffset(Integer sroffset) {
+this.sroffset = sroffset;
 }
 
-@JsonProperty("_links")
-public Links getLinks() {
-return links;
+@JsonProperty("continue")
+public String getContinue() {
+return _continue;
 }
 
-@JsonProperty("_links")
-public void setLinks(Links links) {
-this.links = links;
-}
-
-@JsonProperty("streams")
-public List<Stream> getStreams() {
-return streams;
-}
-
-@JsonProperty("streams")
-public void setStreams(List<Stream> streams) {
-this.streams = streams;
+@JsonProperty("continue")
+public void setContinue(String _continue) {
+this._continue = _continue;
 }
 
 @JsonAnyGetter

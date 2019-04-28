@@ -7,22 +7,36 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 </head>
-<body>
-  
-<a href="AuthController/Spotify" >spoti</a>
-<a href="AuthController/Twitch" >twitch</a>
-<a href="AuthController/Youtube">yt</a>
-<a href="AuthController/Reddit">reddit</a>
-     
+<body style="background-image: url('images/fondo.jpg'); background-size: cover;">
+>
+	
+
+	<img alt="logo" src="images/logoPequenyo.png"
+		style="width: 50%; height: 25%; margin-left: 25%; margin-right: 25%; margin-top: 10%;">
 	<div id="searchDiv">
 		<form id="searchForm" action="searchController" method="post">
-			<input type="text" name="searchQuery" required/> 
-			<input type="submit" name="searchBtn" title="search" value="search">
+			<input style="width:30%; margin-left: 35%; type="text" name="searchQuery" placeholder="Introduce el nombre del videojuego"
+				required /> <br> <input
+				style="margin-left: 49%; margin-top: 1%; border: none; background-color: #ff00ff; color: #ffff00;
+				 " type="submit"
+				name="searchBtn" title="search" value="Buscar">
 		</form>
 	</div>
+	<div id="autentificacion" style="margin-left: 44%; margin-top: 2%;">
+		<h3 style="color: white;">Acepte los permisos requeridos</h3>
+		<a href="AuthController/Spotify"><img alt="Spotify"
+			src="images/spotifyLogo.png" style="width: 50px; height: 50px; margin-right: 2%;"></a>
+		<a href="/twitchLogIn"><img alt="Twitch"
+			src="images/twitchLogo.png" style="width: 50px; height: 50px; margin-right: 2%;"></a>
+		<a href="AuthController/Youtube"><img alt="YouTube"
+			src="images/youtubeLogo.png" style="width: 50px; height: 50px; margin-right: 2%;"></a>
+		<a href="AuthController/Reddit"><img alt="YouTube"
+			src="images/redditLogo.png" style="width: 50px; height: 50px; margin-right: 2%;"></a>
+	</div>
 	
-        <h2> Tokens de OAuth </h2>
-        <ul>
+        <div id="tokens" style="border: 1px solid white; width: 15%;">
+		<h2 style="color: white;">Tokens de OAuth</h2>
+		<ul style="color: white;">
             <li><strong>Youtube:</strong>
                 <ul>
                     <li><c:choose>
@@ -56,7 +70,7 @@
                     Token de Twitch cargado
                      </c:when>
                       <c:otherwise>
-        				Debe de logearse en Twitch <a href="AuthController/Twitch">aquí</a>
+        				Debe de logearse en Twitch <a href="/twitchLogIn">aquí</a>
     					</c:otherwise>
     				</c:choose>
                     <li><strong>Reddit:</strong>
@@ -71,6 +85,6 @@
     				</c:choose>
                      </li>
                 </ul>
-	
+	</div>
 </body>
 </html>

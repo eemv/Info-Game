@@ -11,32 +11,32 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
 @JsonInclude(JsonInclude.Include.NON_NULL)
 @JsonPropertyOrder({
-"large",
-"medium",
 "small",
+"medium",
+"large",
 "template"
 })
 public class Preview {
 
-@JsonProperty("large")
-private String large;
-@JsonProperty("medium")
-private String medium;
 @JsonProperty("small")
 private String small;
+@JsonProperty("medium")
+private String medium;
+@JsonProperty("large")
+private String large;
 @JsonProperty("template")
 private String template;
 @JsonIgnore
 private Map<String, Object> additionalProperties = new HashMap<String, Object>();
 
-@JsonProperty("large")
-public String getLarge() {
-return large;
+@JsonProperty("small")
+public String getSmall() {
+return small;
 }
 
-@JsonProperty("large")
-public void setLarge(String large) {
-this.large = large;
+@JsonProperty("small")
+public void setSmall(String small) {
+this.small = small;
 }
 
 @JsonProperty("medium")
@@ -49,14 +49,14 @@ public void setMedium(String medium) {
 this.medium = medium;
 }
 
-@JsonProperty("small")
-public String getSmall() {
-return small;
+@JsonProperty("large")
+public String getLarge() {
+return large;
 }
 
-@JsonProperty("small")
-public void setSmall(String small) {
-this.small = small;
+@JsonProperty("large")
+public void setLarge(String large) {
+this.large = large;
 }
 
 @JsonProperty("template")

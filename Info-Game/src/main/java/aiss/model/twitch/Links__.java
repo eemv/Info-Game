@@ -1,7 +1,6 @@
 package aiss.model.twitch;
 
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 import com.fasterxml.jackson.annotation.JsonAnyGetter;
 import com.fasterxml.jackson.annotation.JsonAnySetter;
@@ -12,49 +11,23 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
 @JsonInclude(JsonInclude.Include.NON_NULL)
 @JsonPropertyOrder({
-"_total",
-"_links",
-"streams"
+"self"
 })
-public class StreamSearch {
+public class Links__ {
 
-@JsonProperty("_total")
-private Integer total;
-@JsonProperty("_links")
-private Links links;
-@JsonProperty("streams")
-private List<Stream> streams = null;
+@JsonProperty("self")
+private String self;
 @JsonIgnore
 private Map<String, Object> additionalProperties = new HashMap<String, Object>();
 
-@JsonProperty("_total")
-public Integer getTotal() {
-return total;
+@JsonProperty("self")
+public String getSelf() {
+return self;
 }
 
-@JsonProperty("_total")
-public void setTotal(Integer total) {
-this.total = total;
-}
-
-@JsonProperty("_links")
-public Links getLinks() {
-return links;
-}
-
-@JsonProperty("_links")
-public void setLinks(Links links) {
-this.links = links;
-}
-
-@JsonProperty("streams")
-public List<Stream> getStreams() {
-return streams;
-}
-
-@JsonProperty("streams")
-public void setStreams(List<Stream> streams) {
-this.streams = streams;
+@JsonProperty("self")
+public void setSelf(String self) {
+this.self = self;
 }
 
 @JsonAnyGetter
