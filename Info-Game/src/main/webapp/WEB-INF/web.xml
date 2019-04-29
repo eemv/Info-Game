@@ -141,4 +141,24 @@
         <servlet-name>RedditOAuth2Callback</servlet-name>
         <url-pattern>/oauth2callback/Reddit</url-pattern> 
 </servlet-mapping>
+ <servlet>
+    <description></description>
+    <display-name>TwitchLogInServlet</display-name>
+    <servlet-name>TwitchLogInServlet</servlet-name>
+    <servlet-class>aiss.controller.search.TwitchLogInServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>TwitchLogInServlet</servlet-name>
+    <url-pattern>/twitchLogIn</url-pattern>
+</servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>TwitchCallbackServlet</display-name>
+    <servlet-name>TwitchCallbackServlet</servlet-name>
+    <servlet-class>aiss.controller.search.TwitchCallbackServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>TwitchCallbackServlet</servlet-name>
+    <url-pattern>/TwitchCallback</url-pattern>
+  </servlet-mapping>
 </web-app>

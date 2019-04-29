@@ -1,7 +1,6 @@
-package aiss.model.twitch;
+package aiss.model.wikipedia;
 
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 import com.fasterxml.jackson.annotation.JsonAnyGetter;
 import com.fasterxml.jackson.annotation.JsonAnySetter;
@@ -12,49 +11,49 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
 @JsonInclude(JsonInclude.Include.NON_NULL)
 @JsonPropertyOrder({
-"_total",
-"_links",
-"streams"
+"batchcomplete",
+"continue",
+"query"
 })
-public class StreamSearch {
+public class SearchWikipedia {
 
-@JsonProperty("_total")
-private Integer total;
-@JsonProperty("_links")
-private Links links;
-@JsonProperty("streams")
-private List<Stream> streams = null;
+@JsonProperty("batchcomplete")
+private String batchcomplete;
+@JsonProperty("continue")
+private Continue _continue;
+@JsonProperty("query")
+private Query query;
 @JsonIgnore
 private Map<String, Object> additionalProperties = new HashMap<String, Object>();
 
-@JsonProperty("_total")
-public Integer getTotal() {
-return total;
+@JsonProperty("batchcomplete")
+public String getBatchcomplete() {
+return batchcomplete;
 }
 
-@JsonProperty("_total")
-public void setTotal(Integer total) {
-this.total = total;
+@JsonProperty("batchcomplete")
+public void setBatchcomplete(String batchcomplete) {
+this.batchcomplete = batchcomplete;
 }
 
-@JsonProperty("_links")
-public Links getLinks() {
-return links;
+@JsonProperty("continue")
+public Continue getContinue() {
+return _continue;
 }
 
-@JsonProperty("_links")
-public void setLinks(Links links) {
-this.links = links;
+@JsonProperty("continue")
+public void setContinue(Continue _continue) {
+this._continue = _continue;
 }
 
-@JsonProperty("streams")
-public List<Stream> getStreams() {
-return streams;
+@JsonProperty("query")
+public Query getQuery() {
+return query;
 }
 
-@JsonProperty("streams")
-public void setStreams(List<Stream> streams) {
-this.streams = streams;
+@JsonProperty("query")
+public void setQuery(Query query) {
+this.query = query;
 }
 
 @JsonAnyGetter

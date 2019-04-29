@@ -15,9 +15,12 @@ import aiss.model.reddit.RedditSearch;
 import aiss.model.resources.RedditResource;
 import aiss.model.resources.SpotifyResource;
 import aiss.model.resources.TwitchResource;
+import aiss.model.resources.WikipediaResource;
 import aiss.model.resources.YoutubeResource;
 import aiss.model.spotify.Playlists;
 import aiss.model.twitch.StreamSearch;
+import aiss.model.twitch.Twitch;
+import aiss.model.wikipedia.WikipediaTitle;
 import aiss.model.youtube.VideoSearch;
 
 
@@ -48,9 +51,9 @@ public class SearchController extends HttpServlet {
 		RequestDispatcher rd = null;
 		
 		 
-
+		Twitch twitch =  (Twitch) request.getSession().getAttribute("twitch");
 				String accessToken = (String) request.getSession().getAttribute("Spotify-token");
-				String accessTokenTW = (String) request.getSession().getAttribute("Twitch-token");
+				String accessTokenTW = twitch.getAccess_token();
 				String accessTokenYT = (String) request.getSession().getAttribute("Youtube-token");
 				String accessTokenRE = (String) request.getSession().getAttribute("Reddit-token");
 				
@@ -70,29 +73,43 @@ public class SearchController extends HttpServlet {
 		        			log.log(Level.SEVERE, "Spotify object: " + spotifyResults);
 		        			rd = request.getRequestDispatcher("/error.jsp");
 		        		}
-//		        		
+		        		
+		        		if (accessTokenTW != null && !"".equals(accessTokenTW)) {
+		        		
+		        		StreamSearch s=twitch.requestStreams(query);
+		        		
+		        		if (s!=null){
+			        		log.log(Level.FINE, "Los streams no es null");
+			  
+			        		rd = request.getRequestDispatcher("/success.jsp");
+			        		request.setAttribute("streams", s.getStreams());
+			        	} else {
+			        		log.log(Level.SEVERE, "Twitch object: " + s);
+			        		rd = request.getRequestDispatcher("/error.jsp");
+			        	}
+		        		
+		        		log.log(Level.FINE, "Buscando información del videojuego " + query);
+			    		WikipediaResource wiki = new WikipediaResource();
+			    		WikipediaTitle wikiResults = wiki.getWiki(query);
+			    		
+			    		
+			    		if (wikiResults!=null){
+			    			log.log(Level.FINE, "La informacion no es null " );
+			    			rd = request.getRequestDispatcher("/success.jsp");
+			    			request.setAttribute("wiki",aux(wikiResults.getParse().getWikitext().getT()));
+			    			
+			    		} else {
+			    			log.log(Level.SEVERE, "Wiki objects: " + wikiResults);
+			    			rd = request.getRequestDispatcher("/error.jsp");
+			    }
+//		        		}
 //		        		log.log(Level.FINE, "Searching for Twitch playlists that containn " + query);
 //		        		TwitchResource twResource = new TwitchResource();
 //		        		StreamSearch sts=twResource.searchStreams2(query);
 //		        		if(sts!=null) {
 //		        		request.setAttribute("streams", sts.getStreams());
 //		        	}
-//		        	if (accessTokenTW != null && !"".equals(accessTokenTW)) {
-//		        		
-//			        	log.log(Level.FINE, "Searching for Twitch playlists that containn " + query);
-//			        	TwitchResource twResource = new TwitchResource(accessTokenTW);
-//			        	StreamSearch twitchResults = twResource.searchStreams(query);
-//			        		
-//			        	if (twitchResults!=null){
-//			        		log.log(Level.FINE, "La playlist no es null");
-//			  
-//			        		rd = request.getRequestDispatcher("/success.jsp");
-//			        		request.setAttribute("streams", twitchResults.getStreams());
-//			        	} else {
-//			        		log.log(Level.SEVERE, "Twitch object: " + twitchResults);
-//			        		rd = request.getRequestDispatcher("/error.jsp");
-//			        	}
-			        	
+//		        	
 		           	if (accessTokenYT != null && !"".equals(accessTokenYT)) {
 		        		log.log(Level.FINE, "Searching for Youtube videos that containn " + query);
 		        		YoutubeResource ytResource = new YoutubeResource(accessTokenYT);
@@ -133,6 +150,7 @@ public class SearchController extends HttpServlet {
 		     }
 		        	rd.forward(request, response);
 		 }
+	}
 //		    }
 //	}
 		        	
@@ -141,4 +159,17 @@ public class SearchController extends HttpServlet {
 		doGet(request, response);
 	}
 	
+	private String aux(String s) {
+		String[] trozos=s.split("es un", 2);
+		trozos[1]=trozos[1].replace("[", "");
+		trozos[1]=trozos[1].replace("]", "");
+		trozos[1]=trozos[1].replace("<ref>", "");
+		trozos[1]=trozos[1].replace("{{", "");
+		trozos[1]=trozos[1].replace("}}", "");
+		String res=trozos[1].substring(0, 1000);
+		res=res.concat("...");
+		res=Character.toUpperCase(res.charAt(0)) + res.substring(1,res.length());
+		
+		return res;
+	}
 }

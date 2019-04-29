@@ -25,7 +25,6 @@ fieldset {
 	color: black;
 	background-color: white;;
 }
-
 legend {
 	padding: 0.2em 0.5em;
 	border: 1px solid white;
@@ -66,7 +65,7 @@ legend {
 			<c:out value="${param.searchQuery}" />
 		</legend>
 		<c:forEach items="${requestScope.playlists}" var="item">
-			<span style="font-family: 'Montserrat';"><strong><em>Título:</em></strong>
+			<span style="font-family: 'Montserrat';"><strong><em>Tï¿½tulo:</em></strong>
 				<c:out value="${item.name}" /></span>
 			<br />
 		</c:forEach>
@@ -111,6 +110,26 @@ legend {
 			<li><a href='http://www.reddit.com<c:out value="${post.permalink}"/>'><c:out value="${post.title}"/></a></li>
 		</c:forEach>
 	</ul>
+
+
+<fieldset id="twitch" style="float: left;">
+		<legend style="background-color: #DB33FF; color: black; padding-left: 20px; font-family: 'Fjalla One'; text-transform: uppercase;"><img src="images/twitch.png"
+				style="width: 25px; height: 25px; padding-right: 5px;">
+			Contenido de Twitch de
+			<c:out value="${param.searchQuery}" />
+		</legend>
+		<c:forEach items="${requestScope.streams}" var="stream">
+			<span>Stream link: <c:out value="${stream.channel.url}" /></span>
+			<br />
+		</c:forEach>
+	</fieldset>
+
+<fieldset id="wikipedia" style="float:left;">
+	<legend style="background-color: #FF5733; color: black; padding-left: 20px; font-family: 'Fjalla One'; text-transform: uppercase;"><img src="images/reddit.png"
+				style="width: 25px; height: 25px; padding-right: 5px;">Resultado de Wikipedia para <c:out value="${param.searchQuery}"/></legend>
+	
+	<c:out value="${requestScope.wiki}"/>
+	
 </fieldset>
 </body>
 </html>

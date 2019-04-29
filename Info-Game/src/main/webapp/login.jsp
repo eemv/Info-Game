@@ -28,6 +28,7 @@
 		<a href="AuthController/Spotify"><img alt="Spotify"
 			src="images/spotifyLogo.png" style="width: 50px; height: 50px; margin-right: 2%;"></a>
 		<a href="AuthController/Twitch"><img alt="Twitch"
+		<a href="/twitchLogIn"><img alt="Twitch"
 			src="images/twitchLogo.png" style="width: 50px; height: 50px; margin-right: 2%;"></a>
 		<a href="AuthController/Youtube"><img alt="YouTube"
 			src="images/youtubeLogo.png" style="width: 50px; height: 50px; margin-right: 2%;"></a>
@@ -71,7 +72,7 @@
                     Token de Twitch cargado
                      </c:when>
                       <c:otherwise>
-        				Debe de logearse en Twitch <a href="AuthController/Twitch">aquí</a>
+        				Debe de logearse en Twitch <a href="/twitchLogIn">aquí</a>
     					</c:otherwise>
     				</c:choose>
                     <li><strong>Reddit:</strong>
