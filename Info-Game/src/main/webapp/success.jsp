@@ -16,6 +16,7 @@ body {
 	background-image: url("images/fondoPagina.jpg");
 	background-size: cover;
 }
+
 fieldset {
 	border: 1px solid white;
 	width: 45%;
@@ -31,10 +32,12 @@ legend {
 	text-align: right;
 	color: white;
 }
+
 #banner {
 	width: 100%;
 	height: 5%;
 	align-content: center;
+
 }
 </style>
 </head>
@@ -62,7 +65,7 @@ legend {
 			<c:out value="${param.searchQuery}" />
 		</legend>
 		<c:forEach items="${requestScope.playlists}" var="item">
-			<span style="font-family: 'Montserrat';"><strong><em>Título:</em></strong>
+			<span style="font-family: 'Montserrat';"><strong><em>Tï¿½tulo:</em></strong>
 				<c:out value="${item.name}" /></span>
 			<br />
 		</c:forEach>
@@ -79,6 +82,34 @@ legend {
 			<br />
 		</c:forEach>
 	</fieldset>
+
+
+<fieldset id="twitch" style="float: left;">
+		<legend style="background-color: #DB33FF; color: black; padding-left: 20px; font-family: 'Fjalla One'; text-transform: uppercase;"><img src="images/twitch.png"
+				style="width: 25px; height: 25px; padding-right: 5px;">
+			Contenido de Twitch de
+			<c:out value="${param.searchQuery}" />
+		</legend>
+		<c:forEach items="${requestScope.streams}" var="stream">
+			<span>Stream title: <c:out value="${stream.channel.url}" /></span>
+			<br />
+		</c:forEach>
+	</fieldset>
+<!-- 
+  <img src='http://farm<c:out value="${photo.farm}"/>.staticflickr.com/<c:out value="${photo.server}"/>/
+	<c:out value="${photo.id}"/>_<c:out value="${photo.secret}"/>.jpg'/>
+	
+
+-->	
+
+<fieldset id="reddit" style="float:left;">
+	<legend style="background-color: #FF5733; color: black; padding-left: 20px; font-family: 'Fjalla One'; text-transform: uppercase;"><img src="images/reddit.png"
+				style="width: 25px; height: 25px; padding-right: 5px;">Resultados de Reddit para <c:out value="${param.searchQuery}"/></legend>
+	<ul>
+		<c:forEach items="${requestScope.posts}" var="post">
+			<li><a href='http://www.reddit.com<c:out value="${post.permalink}"/>'><c:out value="${post.title}"/></a></li>
+		</c:forEach>
+	</ul>
 
 
 <fieldset id="twitch" style="float: left;">
