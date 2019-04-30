@@ -39,16 +39,7 @@ public class TwitchCallbackServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		System.out.println(request.getParameter("code"));
 		String url = "https://api.twitch.tv/kraken/oauth2/token?client_id=3u7g0x9c0bcoz644h5ryrjiqsqqgsf&client_secret=6z7xayco6bzhpeow9f13sr627mquyz&code="+request.getParameter("code")+"&grant_type=authorization_code&redirect_uri=http://localhost:8090/TwitchCallback&state=200";
-//		Client client = new Client(new Context(), Protocol.HTTP);
-//		ClientResource cr = new ClientResource(url);
-////		cr.setEntityBuffering(true);
-//		Twitch twitch = null;
-//////		cr.setNext(client);
-//		try {
-//			twitch = cr.post(twitch, Twitch.class);
-//		} catch (ResourceException e) {
-//			System.err.println(cr.getResponse());
-//		}
+
 		CloseableHttpClient httpclient = HttpClients.createDefault();
 		HttpPost httpPost = new HttpPost(url);		
 		httpPost.addHeader("Content-Type", "application/json");

@@ -58,7 +58,7 @@ public class SearchController extends HttpServlet {
 				String accessTokenRE = (String) request.getSession().getAttribute("Reddit-token");
 				
 		        if(query != null  && query != "") {
-		        	if (accessToken != null && !"".equals(accessToken)) {
+		        	
 		        		log.log(Level.FINE, "Searching for Spotify playlists that containn " + query);
 		        		SpotifyResource spResource = new SpotifyResource(accessToken);
 		        	
@@ -150,7 +150,7 @@ public class SearchController extends HttpServlet {
 		     }
 		        	rd.forward(request, response);
 		 }
-	}
+	
 //		    }
 //	}
 		        	
