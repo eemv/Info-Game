@@ -22,10 +22,12 @@
 				name="searchBtn" title="search" value="Buscar">
 		</form>
 	</div>
+
 	<div id="autentificacion" style="margin-left: 44%; margin-top: 2%;">
 		<h3 style="color: white;">Acepte los permisos requeridos</h3>
 		<a href="AuthController/Spotify"><img alt="Spotify"
 			src="images/spotifyLogo.png" style="width: 50px; height: 50px; margin-right: 2%;"></a>
+		<a href="AuthController/Twitch"><img alt="Twitch"
 		<a href="/twitchLogIn"><img alt="Twitch"
 			src="images/twitchLogo.png" style="width: 50px; height: 50px; margin-right: 2%;"></a>
 		<a href="AuthController/Youtube"><img alt="YouTube"
