@@ -91,7 +91,7 @@ legend {
 			<c:out value="${param.searchQuery}" />
 		</legend>
 		<c:forEach items="${requestScope.streams}" var="stream">
-			<span>Stream title: <c:out value="${stream.title}" /></span>
+			<span>Stream title: <c:out value="${stream.channel.url}" /></span>
 			<br />
 		</c:forEach>
 	</fieldset>

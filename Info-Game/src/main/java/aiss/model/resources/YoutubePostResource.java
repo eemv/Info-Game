@@ -24,9 +24,7 @@ public class YoutubePostResource {
 	        cr.setChallengeResponse(chr);
 	        String json = "{" + "snippet" + ":{"+"videoId" + ":" + videoId + ",topLevelComment" + ":{" 
 	        + "snippet" + ":{" + "textOriginal" + ":" + comment + "}}}}";
-	        cr.post(comment, String.class);
-			
-			
+	        cr.post(json, String.class);
 			return comment;
 		} catch (ResourceException re) {
 			log.warning(re.getMessage());
