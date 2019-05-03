@@ -31,7 +31,7 @@ public class Twitch implements Serializable {
 		this.scope = string3;
 	}
 	public StreamSearch requestStreams(String query) throws IOException{
-		String url = baseURL + "search/streams?query=" + URLEncoder.encode(query, "UTF-8")+"&limit=5";
+		String url = baseURL + "search/streams?query=" + URLEncoder.encode(query, "UTF-8")+"&limit=3";
 		HttpClient client = HttpClientBuilder.create().build();
 		HttpGet request = new HttpGet(url);
 

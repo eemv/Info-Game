@@ -25,7 +25,7 @@ public class SpotifyResource {
     public Playlists searchPlaylist(String query) throws UnsupportedEncodingException {
     	
     	String queryFormatted = "q="  + '"' + URLEncoder.encode(query + " soundtrack", "UTF-8") + '"';
-    	String URLSearchPlaylists = baseURL + "/search?" + queryFormatted + "&type=playlist";
+    	String URLSearchPlaylists = baseURL + "/search?" + queryFormatted + "&type=playlist&limit=4";
     	ClientResource cr = new ClientResource(URLSearchPlaylists);  
     	ChallengeResponse chr = new ChallengeResponse(ChallengeScheme.HTTP_OAUTH_BEARER);
         chr.setRawValue(access_token);

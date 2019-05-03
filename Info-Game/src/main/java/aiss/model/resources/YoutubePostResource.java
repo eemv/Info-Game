@@ -12,7 +12,7 @@ public class YoutubePostResource {
 	
 	private static final Logger log = Logger.getLogger(YoutubePostResource.class.getName());
 	final String uriComment = "https://www.googleapis.com/youtube/v3/commentThreads";
-	
+
 	public String createComment(String comment, String access_token, String videoId) {
 
 		try {

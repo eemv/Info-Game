@@ -180,8 +180,15 @@ legend {
 					<c:out value="${param.searchQuery}" />
 				</legend>
 				<c:forEach items="${requestScope.videos}" var="video">
-					<span style="font-family: 'Montserrat';">-<c:out
-							value="${video.snippet.title}" /></span>
+					<span style="font-family: 'Montserrat';">
+					<iframe id="ytplayer"width="160" height="90"
+  			src="http://www.youtube.com/embed/<c:out value="${video.id.videoId}"/>">
+  			</iframe>
+							</span>
+							<form action="YoutubePostServlet" method="POST" >
+							<input type="text" name="comment">
+							<input type="submit" value="enviar">
+							</form>
 					<br />
 				</c:forEach>
 			</fieldset>
