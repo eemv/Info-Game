@@ -109,7 +109,15 @@
         <servlet-name>YoutubeOAuth2Callback</servlet-name>
         <url-pattern>/oauth2callback/Youtube</url-pattern> 
 </servlet-mapping>
-
+<servlet>
+  <description/>
+  <servlet-name>YoutubePostServlet</servlet-name>
+        <servlet-class>aiss.controller.search.YoutubePostServlet</servlet-class>
+</servlet>
+<servlet-mapping>
+        <servlet-name>YoutubePostServlet</servlet-name>
+        <url-pattern>/YoutubePostServlet</url-pattern>
+</servlet-mapping>
       <!--Reddit-->
   <servlet>
   <description/>

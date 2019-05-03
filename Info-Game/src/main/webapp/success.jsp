@@ -187,6 +187,7 @@ legend {
 							</span>
 							<form action="YoutubePostServlet" method="POST" >
 							<input type="text" name="comment">
+							<input type="hidden" name="videoId" value=<c:out value="${video.id.videoId}"/>>
 							<input type="submit" value="enviar">
 							</form>
 					<br />
