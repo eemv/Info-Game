@@ -19,7 +19,7 @@
 		"clientId": "93603274515-86cugqothc4ip4at35osfdf6jb2themu.apps.googleusercontent.com",
 		"clientSecret": "Owcu52hR_GCRxQKshOd5tWpv",
 		"authorizationFormUrl": "https://accounts.google.com/o/oauth2/v2/auth",
-		"scopes":["https://www.googleapis.com/auth/youtube","https://www.googleapis.com/auth/youtube.readonly"]
+		"scopes":["https://www.googleapis.com/auth/youtube","https://www.googleapis.com/auth/youtube.readonly","https://www.googleapis.com/auth/youtube.force-ssl"]
 	},
 	"Reddit": {
 		"tokenUrl": "https://www.reddit.com/api/v1/access_token",

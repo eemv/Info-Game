@@ -26,12 +26,12 @@ public class YoutubePostResource {
 			ClientResource cr = new ClientResource(uri);
 			ChallengeResponse chr = new ChallengeResponse(ChallengeScheme.HTTP_OAUTH_BEARER);
 	        chr.setRawValue(access_token);
+	        log.warning(access_token);
 	        cr.setChallengeResponse(chr);
-	        String json = "{" + "snippet" + ":{"+"videoId" + ":" + videoId + ",topLevelComment" + ":{" 
-	        + "snippet" + ":{" + "textOriginal" + ":" + comment + "}}}}";
+	        String json = "{\"snippet\":{\"videoId\":\"" + videoId + "\",\"topLevelComment\":{\"snippet\":{\"textOriginal\":\""
+	        + comment + "\"}}}}";
 	        log.warning(json);
 	        cr.post(json, String.class);
-	        
 	        
 			return comment;
 		} catch (ResourceException re) {
