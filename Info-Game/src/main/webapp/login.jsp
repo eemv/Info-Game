@@ -31,8 +31,6 @@
 			src="images/twitchLogo.png" style="width: 50px; height: 50px; margin-right: 2%;"></a>
 		<a href="AuthController/Youtube"><img alt="YouTube"
 			src="images/youtubeLogo.png" style="width: 50px; height: 50px; margin-right: 2%;"></a>
-		<a href="AuthController/Reddit"><img alt="YouTube"
-			src="images/redditLogo.png" style="width: 50px; height: 50px; margin-right: 2%;"></a>
 	</div>
 	
 </body>

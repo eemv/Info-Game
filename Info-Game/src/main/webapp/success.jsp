@@ -40,10 +40,7 @@ legend {
 	align-content: center;
 }
 
-#twitch-embed {
-	padding-left: 100px;
-	padding-right: 100px;
-}
+
 
 #cajaLogo {
 	width: 100%;
@@ -71,7 +68,8 @@ legend {
 }
 
 #cajaYT {
-	background-color: purple;
+	background-color: #fff;
+	border-radius: 15px;
 	width: 46%;
 	height: 350px;
 	margin-left: 5%;
@@ -79,31 +77,49 @@ legend {
 	float: left;
 }
 
+#generaVideos{
+	margin-left: 10px;
+	margin-right: 10px;
+	margin-top: 10px;
+	margin-bottom: 10px;
+	border: 1px solid black;
+}
+
+#generaVideos iframe{
+	float: left;
+}
+
 #cajaSpotify {
+	background-color: #fff;
 	margin-top: 20px;
 	width: 100%;
 	height: 200px;
-	background-color: #345678;
+	border-radius: 15px;
 	float: left;
 }
 
-#twitch-embed {
+#cajaSpotify iframe{
+	margin-left: 30px;
+	margin-right: 30px;
+}
+
+
+#cajaTwitch {
 	margin-top: 20px;
 	width: 100%;
 	height: 400px;
-	background-color: #987654;
+	background-color: #fff;
+	border-radius: 15px;
 	float: left;
+	margin-bottom: 100px;
 }
 
-@media ( max-width : 600px) {
-	#cajaWiki {
-		width: 100%;
-		margin-left: 0%;
-	}
-	#cajaYT {
-		width: 100%;
-		margin-left: 0%;
-	}
+#twitch-embed {
+	margin-top: 50px;
+	margin-left: 20px;
+	margin-right: 20px;
+	float:left;
+	
 }
 
 #encabezado {
@@ -128,13 +144,71 @@ legend {
 	clear: right;
 }
 
-@media ( max-width : 900px) {
+
+@media ( max-width : 400px) {
+	#cajaLogo img{
+	width: 100%;
+	height: 100%;
+	}
+
 	#cajaWiki {
 		width: 100%;
+		height: 1000px;
 		margin-left: 0%;
 	}
 	#cajaYT {
 		width: 100%;
+		height: 700px;
+		margin-left: 0%;
+	}
+	#cajaSpotify {
+		width: 100%;
+		height: 700px;
+		margin-left: 0%;
+	}
+	
+	#cajaSpotify iframe{
+		margin-top: 50px;
+		margin-left: 20%;
+	}
+	#cajaTwitch {
+		width: 100%;
+		height: 800px;
+		margin-left: 0%;
+	}
+}
+
+
+@media ( max-width : 900px) {
+	#cajaLogo img{
+	width: 100%;
+	height: 100%;
+	}
+
+	#cajaWiki {
+		width: 100%;
+		height: 450px;
+		margin-left: 0%;
+	}
+	#cajaYT {
+		width: 100%;
+		height: 450px;
+		margin-left: 0%;
+	}
+	#cajaSpotify {
+		width: 100%;
+		height: 650px;
+		margin-left: 0%;
+	}
+	
+	#cajaSpotify iframe{
+		margin-top: 20px;
+		margin-left: 30%;
+		margin-right: 100px;
+	}
+	#cajaTwitch {
+		width: 100%;
+		height: 800px;
 		margin-left: 0%;
 	}
 }
@@ -160,7 +234,7 @@ legend {
 			<div id="encabezado">
 				<img src="images/wikipedia.png">
 				<h3>
-					Resultado de Wikipedia para
+					Sinopsis de 
 					<c:out value="${param.searchQuery}" />
 				</h3>
 			</div>
@@ -171,55 +245,64 @@ legend {
 		</div>
 
 		<div id="cajaYT">
-			<fieldset id="youtube" style="margin-bottom: 320px;">
-				<legend
-					style="background-color: red; color: black; padding-left: 20px; font-family: 'Fjalla One'; text-transform: uppercase;">
-					<img src="images/youtube.png"
-						style="width: 25px; height: 25px; padding-right: 5px;">
-					Videos de Youtube de
+		<div id="encabezado">
+				<img src="images/youtube.png">
+				<h3>
+					Videos para
 					<c:out value="${param.searchQuery}" />
-				</legend>
+				</h3>
+			</div>
+			<div id="generaVideos">
 				<c:forEach items="${requestScope.videos}" var="video">
-					<span style="font-family: 'Montserrat';">
-					<iframe id="ytplayer"width="160" height="90"
+					<iframe  id="ytplayer"width="160" height="90"
   			src="http://www.youtube.com/embed/<c:out value="${video.id.videoId}"/>">
   			</iframe>
-							</span>
+							
 							<form action="YoutubePostServlet" method="POST" >
-							<input type="text" name="comment">
+							<input type="text" name="comment"> <br>
 							<input type="hidden" name="videoId" value=<c:out value="${video.id.videoId}"/>>
 							<input type="submit" value="enviar">
 							</form>
 					<br />
 				</c:forEach>
-			</fieldset>
+			</div>
 		</div>
 
 		<div id="cajaSpotify">
-			
+			<div id="encabezado">
+				<img src="images/spotify.png">
+				<h3>
+					Soundtracks para
+					<c:out value="${param.searchQuery}" />
+				</h3>
+			</div>
+			<br>
 			
 			<c:forEach items="${requestScope.playlists}" var="item">
 			<iframe
 				src="https://open.spotify.com/embed/playlist/
 						<c:out value="${item.id}" />"
-				width="250" height="80" frameborder="0" allowtransparency="true"
+				width="300" height="100" frameborder="0" allowtransparency="true"
 				allow="encrypted-media"></iframe>
 			</c:forEach>
 			
 			
 		</div>
-
-		<div id="twitch-embed">
-			<h1>
-				Streams para
-				<c:out value="${param.searchQuery}" />
-			</h1>
+		<div id="cajaTwitch">
+			<div id="encabezado">
+				<img src="images/twitch.png">
+				<h3>
+					Streams para 
+					<c:out value="${param.searchQuery}" />
+				</h3>
+			</div>
+			<div id="twitch-embed" >
 			<c:forEach items="${requestScope.streams}" var="stream">
 				<script src="https://embed.twitch.tv/embed/v1.js"></script>
 				<script type="text/javascript">
 					var embed = new Twitch.Embed("twitch-embed", {
-						width : 400,
-						height : 230,
+						width : 350,
+						height : 200,
 						channel : "${stream.channel.name}",
 						layout : "video",
 						autoplay : false,
@@ -227,7 +310,7 @@ legend {
 				</script>
 			</c:forEach>
 		</div>
-
+		</div>
 	</div>
 </body>
 </html>
