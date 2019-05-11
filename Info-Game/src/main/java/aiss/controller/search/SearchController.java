@@ -55,7 +55,7 @@ public class SearchController extends HttpServlet {
 				String accessToken = (String) request.getSession().getAttribute("Spotify-token");
 				String accessTokenTW = twitch.getAccess_token();
 				String accessTokenYT = (String) request.getSession().getAttribute("Youtube-token");
-				String accessTokenRE = (String) request.getSession().getAttribute("Reddit-token");
+				
 				
 		        if(query != null  && query != "") {
 		        	
@@ -126,22 +126,6 @@ public class SearchController extends HttpServlet {
 		        			rd = request.getRequestDispatcher("/error.jsp");
 		        		}
 		        		
-//		        	if (accessTokenRE != null && !"".equals(accessTokenRE)) {
-//			        		log.log(Level.FINE, "Searching for Reddit that containn " + query);
-//			        		RedditResource REResource = new RedditResource(accessTokenRE);
-//			        	
-//			        		RedditSearch<Post> REResults = REResource.getPosts(query);
-//			        				        		
-//			        		if (REResults!=null){
-//			        			log.log(Level.FINE, "Los resultados de reddit no es null");
-//			  
-//			        			rd = request.getRequestDispatcher("/success.jsp");
-//			        			request.setAttribute("posts", REResults.getData());
-//			        		} else {
-//			        			log.log(Level.SEVERE, "RE object: " + ytResults);
-//			        			rd = request.getRequestDispatcher("/error.jsp");
-//			        		}  		
-//		        	
 		        	
 		        }else {
 		        	request.getRequestDispatcher("/success.jsp");
@@ -150,10 +134,7 @@ public class SearchController extends HttpServlet {
 		     }
 		        	rd.forward(request, response);
 		 }
-	
-//		    }
-//	}
-		        	
+	       	
 	
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		doGet(request, response);
@@ -163,13 +144,17 @@ public class SearchController extends HttpServlet {
 		String[] trozos=s.split("es un", 2);
 		trozos[1]=trozos[1].replace("[", "");
 		trozos[1]=trozos[1].replace("]", "");
-		trozos[1]=trozos[1].replace("<ref>", "");
+		while(trozos[1].contains("<ref") && trozos[1].contains("</ref>")) {
+			String[] aux=trozos[1].split("<ref", 2);
+			String[] aux2=aux[1].split("</ref>", 2);
+			trozos[1]=aux[0].concat(aux2[1]);
+		}
 		trozos[1]=trozos[1].replace("{{", "");
 		trozos[1]=trozos[1].replace("}}", "");
 		String res=trozos[1].substring(0, 1000);
 		res=res.concat("...");
-		res=Character.toUpperCase(res.charAt(0)) + res.substring(1,res.length());
-		
+		String r = res.substring(0, 1).toUpperCase();
+		res=res.concat(r);
 		return res;
 	}
 }
