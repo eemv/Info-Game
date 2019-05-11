@@ -75,19 +75,14 @@ legend {
 	margin-left: 5%;
 	margin-top: 20px;
 	float: left;
+	
 }
 
-#generaVideos{
-	margin-left: 10px;
-	margin-right: 10px;
-	margin-top: 10px;
-	margin-bottom: 10px;
-	border: 1px solid black;
+#cajaYT iframe{
+
+	
 }
 
-#generaVideos iframe{
-	float: left;
-}
 
 #cajaSpotify {
 	background-color: #fff;
@@ -252,20 +247,22 @@ legend {
 					<c:out value="${param.searchQuery}" />
 				</h3>
 			</div>
-			<div id="generaVideos">
+			
 				<c:forEach items="${requestScope.videos}" var="video">
-					<iframe  id="ytplayer"width="160" height="90"
+				<div id="cajitas" style="width:25%; float:left; margin: 0px 180px 0px -150px;">
+					<iframe style="margin-left: -100px;"  id="ytplayer"width="300" height="180"
   			src="http://www.youtube.com/embed/<c:out value="${video.id.videoId}"/>">
-  			</iframe>
+  					</iframe>
 							
 							<form action="YoutubePostServlet" method="POST" >
-							<input type="text" name="comment"> <br>
+							<input type="text" name="comment">
 							<input type="hidden" name="videoId" value=<c:out value="${video.id.videoId}"/>>
 							<input type="submit" value="enviar">
 							</form>
-					<br />
+	
+				</div>	
 				</c:forEach>
-			</div>
+			
 		</div>
 
 		<div id="cajaSpotify">
@@ -277,15 +274,19 @@ legend {
 				</h3>
 			</div>
 			<br>
-			
+			<c:set var="count" value="0" scope="page" />
 			<c:forEach items="${requestScope.playlists}" var="item">
 			<iframe
 				src="https://open.spotify.com/embed/playlist/
 						<c:out value="${item.id}" />"
 				width="300" height="100" frameborder="0" allowtransparency="true"
 				allow="encrypted-media"></iframe>
+			<c:set var="count" value="${count + 1}" scope="page"/>
 			</c:forEach>
-			
+			<c:set var = "playlist" scope = "session" value = "${requestScope.playlists}"/>
+			<c:if test="${count == 0}">
+         		<img alt="No hay" src="images/nocanciones.png" style="width: 150px; height: 60%;">TOI TRIZTE
+     		 </c:if>
 			
 		</div>
 		<div id="cajaTwitch">
@@ -297,6 +298,7 @@ legend {
 				</h3>
 			</div>
 			<div id="twitch-embed" >
+			<c:set var="count" value="0" scope="page" />
 			<c:forEach items="${requestScope.streams}" var="stream">
 				<script src="https://embed.twitch.tv/embed/v1.js"></script>
 				<script type="text/javascript">
@@ -308,7 +310,13 @@ legend {
 						autoplay : false,
 					});
 				</script>
+			<c:set var="count" value="${count + 1}" scope="page"/>	
 			</c:forEach>
+			<c:set var = "streams" scope = "session" value = "${requestScope.streams}"/>
+			<c:if test="${count == 0}">
+         		<img alt="No hay" src="images/twitchtriste.jpg" style="width: 150px; height: 60%;">TOI TAMVIEN TRIZTE
+     		 </c:if>
+			
 		</div>
 		</div>
 	</div>
