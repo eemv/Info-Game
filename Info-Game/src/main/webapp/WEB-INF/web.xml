@@ -118,37 +118,6 @@
         <servlet-name>YoutubePostServlet</servlet-name>
         <url-pattern>/YoutubePostServlet</url-pattern>
 </servlet-mapping>
-      <!--Reddit-->
-  <servlet>
-  <description/>
-  <servlet-name>RedditAuthController</servlet-name>
-        <servlet-class>aiss.controller.oauth.GenericAuthController</servlet-class>
-        <init-param>
-            <param-name>provider</param-name>
-            <param-value>Reddit</param-value>
-        </init-param>
-    </servlet>
-    <servlet-mapping>
-        <servlet-name>RedditAuthController</servlet-name>
-        <url-pattern>/AuthController/Reddit</url-pattern>
-    </servlet-mapping>
-<servlet>
-        <description/>
-        <servlet-name>RedditOAuth2Callback</servlet-name>
-        <servlet-class>aiss.controller.oauth.OAuth2Callback</servlet-class>
-        <init-param>
-            <param-name>provider</param-name>
-            <param-value>Reddit</param-value>
-        </init-param>
-        <init-param>
-            <param-name>onSuccess</param-name>
-            <param-value>redirect:/login.jsp</param-value>
-        </init-param>
-    </servlet>
-    <servlet-mapping>
-        <servlet-name>RedditOAuth2Callback</servlet-name>
-        <url-pattern>/oauth2callback/Reddit</url-pattern> 
-</servlet-mapping>
  <servlet>
     <description></description>
     <display-name>TwitchLogInServlet</display-name>

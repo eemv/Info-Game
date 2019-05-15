@@ -4,9 +4,10 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>Éxito al postear el comentario!</title>
 </head>
 <body>
-
+<h1>Éxito al postear el comentario!</h1>
+<h4>Vuelva a la pantalla de búsqueda <a href="login.jsp">aquí</a></h4>
 </body>
 </html>

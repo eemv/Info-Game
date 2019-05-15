@@ -38,7 +38,7 @@ public class YoutubePostServlet extends HttpServlet{
 			log.log(Level.FINE, "Todo mal");
 		}
 		
-		request.getRequestDispatcher("/login.jsp").forward(request, response);
+		request.getRequestDispatcher("/success.jsp").forward(request, response);
 
 	}
 }
