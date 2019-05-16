@@ -10,11 +10,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import aiss.model.reddit.Post;
-import aiss.model.reddit.RedditSearch;
-import aiss.model.resources.RedditResource;
 import aiss.model.resources.SpotifyResource;
-import aiss.model.resources.TwitchResource;
 import aiss.model.resources.WikipediaResource;
 import aiss.model.resources.YoutubeResource;
 import aiss.model.spotify.Playlists;
@@ -51,7 +47,7 @@ public class SearchController extends HttpServlet {
 		RequestDispatcher rd = null;
 		
 		 
-		Twitch twitch =  (Twitch) request.getSession().getAttribute("twitch");
+				Twitch twitch =  (Twitch) request.getSession().getAttribute("twitch");
 				String accessToken = (String) request.getSession().getAttribute("Spotify-token");
 				String accessTokenTW = twitch.getAccess_token();
 				String accessTokenYT = (String) request.getSession().getAttribute("Youtube-token");
@@ -92,7 +88,6 @@ public class SearchController extends HttpServlet {
 			    		WikipediaResource wiki = new WikipediaResource();
 			    		WikipediaTitle wikiResults = wiki.getWiki(query);
 			    		
-			    		
 			    		if (wikiResults!=null){
 			    			log.log(Level.FINE, "La informacion no es null " );
 			    			rd = request.getRequestDispatcher("/success.jsp");
@@ -102,14 +97,7 @@ public class SearchController extends HttpServlet {
 			    			log.log(Level.SEVERE, "Wiki objects: " + wikiResults);
 			    			rd = request.getRequestDispatcher("/error.jsp");
 			    }
-//		        		}
-//		        		log.log(Level.FINE, "Searching for Twitch playlists that containn " + query);
-//		        		TwitchResource twResource = new TwitchResource();
-//		        		StreamSearch sts=twResource.searchStreams2(query);
-//		        		if(sts!=null) {
-//		        		request.setAttribute("streams", sts.getStreams());
-//		        	}
-//		        	
+		        	
 		           	if (accessTokenYT != null && !"".equals(accessTokenYT)) {
 		        		log.log(Level.FINE, "Searching for Youtube videos that containn " + query);
 		        		YoutubeResource ytResource = new YoutubeResource(accessTokenYT);
