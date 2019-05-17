@@ -17,7 +17,7 @@ public class YoutubePostServlet extends HttpServlet{
 	private static final Logger log = Logger.getLogger(YoutubePostServlet.class.getName());
 	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {	
-		doGet(request, response);
+		doPost(request, response);
 	}
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String videoId = request.getParameter("videoId");

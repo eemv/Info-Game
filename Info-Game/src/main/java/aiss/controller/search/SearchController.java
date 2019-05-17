@@ -52,7 +52,9 @@ public class SearchController extends HttpServlet {
 				String accessTokenTW = twitch.getAccess_token();
 				String accessTokenYT = (String) request.getSession().getAttribute("Youtube-token");
 				
-				
+				log.log(Level.FINE, accessToken);
+				log.log(Level.FINE, accessTokenTW);
+				log.log(Level.FINE, accessTokenYT);
 		        if(query != null  && query != "") {
 		        	
 		        		log.log(Level.FINE, "Searching for Spotify playlists that containn " + query);
