@@ -2,12 +2,6 @@ package aiss.model;
 
 import java.util.List;
 
-import aiss.model.reddit.SearchWikipedia;
-import aiss.model.spotify.Playlists;
-import aiss.model.spotify.SpotifySearch;
-import aiss.model.twitch.StreamSearch;
-import aiss.model.youtube.VideoSearch;
-
 public class Game {
 
 	private String title;
