@@ -16,18 +16,10 @@
 	},
 	"Youtube": {
 		"tokenUrl": "https://www.googleapis.com/oauth2/v4/token",
-		"clientId": "93603274515-86cugqothc4ip4at35osfdf6jb2themu.apps.googleusercontent.com",
-		"clientSecret": "Owcu52hR_GCRxQKshOd5tWpv",
+		"clientId": "892431830261-bd7tl1kqsa01v5shb151or9vtegvmsjr.apps.googleusercontent.com",
+		"clientSecret": "J6TtCSJbZPFmNzPepn93DyL5",
 		"authorizationFormUrl": "https://accounts.google.com/o/oauth2/v2/auth",
-		"scopes":["https://www.googleapis.com/auth/youtube","https://www.googleapis.com/auth/youtube.readonly","https://www.googleapis.com/auth/youtube.force-ssl"]
-	},
-	"Reddit": {
-		"tokenUrl": "https://www.reddit.com/api/v1/access_token",
-		"clientId": "f4FuHRwZk5HFew",
-		"clientSecret": "yuv10TzKRhpuq5pWqPgsrZl74_A",
-		"authorizationFormUrl": "https://www.reddit.com/api/v1/authorize?state=a&duration=permanent&response_type=code",
-		"scopes":["read"]
+		"scopes":["https://www.googleapis.com/auth/youtube","https://www.googleapis.com/auth/youtubepartner","https://www.googleapis.com/auth/youtube.readonly","https://www.googleapis.com/auth/youtube.force-ssl"]
 	}
-	
 
 }		

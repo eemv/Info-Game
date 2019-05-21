@@ -259,6 +259,10 @@ legend {
 							<input type="hidden" name="videoId" value=<c:out value="${video.id.videoId}"/>>
 							<input type="submit" value="enviar">
 							</form>
+							<form action="YoutubeRateServlet" method="POST" >
+							<input type="hidden" name="videoId" value=<c:out value="${video.id.videoId}"/>>
+							<input type="submit" value="like">
+							</form>
 	
 				</div>	
 				</c:forEach>

@@ -30,9 +30,6 @@ import aiss.model.twitch.Twitch;
 import java.net.*;
 
 
-/**
- * Servlet implementation class TwitchCallbackServlet
- */
 public class TwitchCallbackServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
     

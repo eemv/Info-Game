@@ -118,6 +118,15 @@
         <servlet-name>YoutubePostServlet</servlet-name>
         <url-pattern>/YoutubePostServlet</url-pattern>
 </servlet-mapping>
+<servlet>
+  <description/>
+  <servlet-name>YoutubeRateServlet</servlet-name>
+        <servlet-class>aiss.controller.search.YoutubeRateServlet</servlet-class>
+</servlet>
+<servlet-mapping>
+        <servlet-name>YoutubeRateServlet</servlet-name>
+        <url-pattern>/YoutubeRateServlet</url-pattern>
+</servlet-mapping>
  <servlet>
     <description></description>
     <display-name>TwitchLogInServlet</display-name>
