@@ -10,8 +10,6 @@ public class Game {
 	private List<String> videos;
 	private String descripcion;
 	
-	
-	
 	public Game() {
 		super();
 	}
