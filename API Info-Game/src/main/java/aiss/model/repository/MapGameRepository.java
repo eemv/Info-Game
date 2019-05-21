@@ -25,6 +25,8 @@ public class MapGameRepository implements GameRepository{
 	
 public void init() {
 		
+	gameMap = new HashMap<String,Game>();
+	
 		// Create games
 	Game DarkSouls = new Game();
 	DarkSouls.setTitle("DarkSouls");
@@ -52,19 +54,19 @@ public void init() {
 	Game Fifa = new Game();
 	Fifa.setTitle("FIFA 2020");
 	List<String> FIFAplaylist = new ArrayList<String>();
-	DSplaylist.add("FIFA Soundtrack");
-	DSplaylist.add("FIFA 2020 Soundtrack");
-	DSplaylist.add("FIFA BEST SONGS");
+	FIFAplaylist.add("FIFA Soundtrack");
+	FIFAplaylist.add("FIFA 2020 Soundtrack");
+	FIFAplaylist.add("FIFA BEST SONGS");
 	Fifa.setPlaylists(FIFAplaylist);
 	List<String> FIFAdirectos = new ArrayList<String>();
-	DSdirectos.add("http://www.twitch.tv/DjMario");
-	DSdirectos.add("http://www.twitch.tv/streamerFIFA");
-	DSdirectos.add("http://www.twitch.tv/EA");
+	FIFAdirectos.add("http://www.twitch.tv/DjMario");
+	FIFAdirectos.add("http://www.twitch.tv/streamerFIFA");
+	FIFAdirectos.add("http://www.twitch.tv/EA");
 	Fifa.setDirectos(FIFAdirectos);
 	List<String> FIFAvideos = new ArrayList<String>();
-	DSvideos.add("Fifa Liga con el Rayo Vallecano");
-	DSvideos.add("El mejor delantero centro del juego");
-	DSvideos.add("Abro 100 sobres y pasa esto | FIFA");
+	FIFAvideos.add("Fifa Liga con el Rayo Vallecano");
+	FIFAvideos.add("El mejor delantero centro del juego");
+	FIFAvideos.add("Abro 100 sobres y pasa esto | FIFA");
 	Fifa.setVideos(FIFAvideos );
 	Fifa.setDescripcion("FIFA es una saga de videojuegos de fútbol publicados anualmente por Electronic Arts "
 			+ "bajo el sello de EA Sports. Cuando la saga comenzó a finales de 1993 se destacó por ser "
@@ -79,7 +81,8 @@ public void init() {
 	}
 
 	public void addGame(Game g) {
-		String title = g.getTitle();	
+		String title = g.getTitle();
+		g.setTitle(title);
 		gameMap.put(title,g);
 	}
 

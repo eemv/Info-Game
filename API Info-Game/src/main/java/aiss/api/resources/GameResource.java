@@ -18,11 +18,12 @@ import javax.ws.rs.core.UriBuilder;
 import javax.ws.rs.core.UriInfo;
 
 import org.jboss.resteasy.spi.BadRequestException;
+import org.jboss.resteasy.spi.NotFoundException;
 
 import aiss.model.Game;
 import aiss.model.repository.GameRepository;
 import aiss.model.repository.MapGameRepository;
-import javassist.NotFoundException;
+
 
 @Path("/games")
 public class GameResource {
@@ -52,7 +53,7 @@ public class GameResource {
 	@GET
 	@Path("/{title}")
 	@Produces("application/json")
-	public Game get(@PathParam("title") String gameTitle) throws NotFoundException{
+	public Game get(@PathParam("title") String gameTitle){
 		Game game = repository.getGame(gameTitle);
 		if(game == null) {
 			throw new NotFoundException("El juego "+ gameTitle+" no ha sido encontrado");
@@ -86,7 +87,7 @@ public class GameResource {
 	
 	@PUT
 	@Consumes("application/json")
-	public Response updateGame(Game game) throws NotFoundException {
+	public Response updateGame(Game game){
 		Game oldGame = repository.getGame(game.getTitle());
 		if (oldGame == null) {
 			throw new NotFoundException("El juego con titulo "+ game.getTitle()+" no fue encontrado");
@@ -107,7 +108,7 @@ public class GameResource {
 	
 	@DELETE
 	@Path("/{title}")
-	public Response removeGame(@PathParam("title") String gameTitle) throws NotFoundException {
+	public Response removeGame(@PathParam("title") String gameTitle) {
 		Game gameRemoved = repository.getGame(gameTitle);
 		if(gameRemoved == null) {
 			throw new NotFoundException("El juego con titulo "+ gameTitle +" no fue encontrada");
