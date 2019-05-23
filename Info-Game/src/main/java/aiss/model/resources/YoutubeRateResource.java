@@ -28,18 +28,28 @@ public class YoutubeRateResource {
 
 		try {
 			String uri = uriRate + "?id=" + videoId + "&rating=like";
-//			ClientResource cr = new ClientResource(uri);
-//			ChallengeResponse chr = new ChallengeResponse(ChallengeScheme.HTTP_OAUTH_BEARER);
-//	        chr.setRawValue(access_token);
-//	        log.warning(uri);
-//	        cr.setChallengeResponse(chr);
 	        CloseableHttpClient httpclient = HttpClients.createDefault();
 			HttpPost httpPost = new HttpPost(uri);		
 			httpPost.addHeader("Authorization", "Bearer " + access_token);
 			httpPost.addHeader("Accept", "application/json");
 			CloseableHttpResponse response2 = httpclient.execute(httpPost);
 			log.warning(response2.toString());
-//	        log.warning(cr.toString());
+			return true;
+		} catch (ResourceException re) {
+			log.warning(re.getMessage());
+			return false;
+		}
+}
+	public Boolean dislike(String videoId) throws ClientProtocolException, IOException {
+
+		try {
+			String uri = uriRate + "?id=" + videoId + "&rating=dislike";
+	        CloseableHttpClient httpclient = HttpClients.createDefault();
+			HttpPost httpPost = new HttpPost(uri);		
+			httpPost.addHeader("Authorization", "Bearer " + access_token);
+			httpPost.addHeader("Accept", "application/json");
+			CloseableHttpResponse response2 = httpclient.execute(httpPost);
+			log.warning(response2.toString());
 			return true;
 		} catch (ResourceException re) {
 			log.warning(re.getMessage());

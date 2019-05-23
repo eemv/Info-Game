@@ -261,7 +261,13 @@ legend {
 							</form>
 							<form action="YoutubeRateServlet" method="POST" >
 							<input type="hidden" name="videoId" value=<c:out value="${video.id.videoId}"/>>
+							<input name="likedislike" value="like" type="hidden">
 							<input type="submit" value="like">
+							</form>
+							<form action="YoutubeRateServlet" method="POST" >
+							<input type="hidden" name="videoId" value=<c:out value="${video.id.videoId}"/>>
+							<input name="likedislike" value="dislike" type="hidden">
+							<input type="submit" value="dislike">
 							</form>
 	
 				</div>	
