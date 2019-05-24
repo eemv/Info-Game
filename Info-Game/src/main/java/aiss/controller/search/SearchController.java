@@ -11,11 +11,11 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import aiss.model.resources.SpotifyResource;
+import aiss.model.resources.Twitch;
 import aiss.model.resources.WikipediaResource;
 import aiss.model.resources.YoutubeResource;
 import aiss.model.spotify.Playlists;
 import aiss.model.twitch.StreamSearch;
-import aiss.model.twitch.Twitch;
 import aiss.model.wikipedia.WikipediaTitle;
 import aiss.model.youtube.VideoSearch;
 

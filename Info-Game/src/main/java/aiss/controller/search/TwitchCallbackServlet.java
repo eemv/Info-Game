@@ -25,7 +25,7 @@ import org.restlet.data.Protocol;
 import org.restlet.resource.ClientResource;
 import org.restlet.resource.ResourceException;
 
-import aiss.model.twitch.Twitch;
+import aiss.model.resources.Twitch;
 
 import java.net.*;
 
@@ -75,8 +75,11 @@ public class TwitchCallbackServlet extends HttpServlet {
 			System.out.println(s);
 		}
 		Twitch twitch = new Twitch(split[3],split[7],split[11]);
-//		System.out.println(twitch.getCanal().getDisplayName() + " aToken: "+twitch.getAccess_token()+" rToken: "+twitch.getRefresh_token()+" scope: "+twitch.getScope());
+		
     	request.getSession().setAttribute("twitch", twitch);
+    	System.out.println(split[3]);
+    	System.out.println(split[7]);
+    	System.out.println(split[11]);
 		response.sendRedirect(request.getContextPath() + "/");
 	}
 

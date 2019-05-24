@@ -12,7 +12,7 @@ import org.restlet.resource.ResourceException;
 import aiss.model.youtube.VideoSearch;
 
 public class YoutubeResource {
-	private static final Logger log = Logger.getLogger(TwitchResource.class.getName());
+	private static final Logger log = Logger.getLogger(YoutubeResource.class.getName());
 	private final String access_token;
     private final String baseURL = "https://www.googleapis.com/youtube/v3";
 

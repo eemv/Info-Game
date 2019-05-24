@@ -327,7 +327,7 @@ input[type=text] {
 			</c:forEach>
 			<c:set var = "playlist" scope = "session" value = "${requestScope.playlists}"/>
 			<c:if test="${count == 0}">
-         		<img alt="No hay" src="images/nocanciones.png" style="width: 150px; height: 60%;">TOI TRIZTE
+         		<img alt="No hay" src="images/noResultadoSpotify.png" style="width: 150px; height: 60%;">
      		 </c:if>
 			
 		</div>
@@ -356,7 +356,7 @@ input[type=text] {
 			</c:forEach>
 			<c:set var = "streams" scope = "session" value = "${requestScope.streams}"/>
 			<c:if test="${count == 0}">
-         		<img alt="No hay" src="images/twitchtriste.jpg" style="width: 150px; height: 60%;">TOI TAMVIEN TRIZTE
+         		<img alt="No hay" src="images/noResultadoTwitch.jpg" style="width: 150px; height: 60%;">
      		 </c:if>
 			
 		</div>
