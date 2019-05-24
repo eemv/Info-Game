@@ -22,7 +22,7 @@ public class YoutubeResource {
     
  public VideoSearch searchVideos(String query) throws UnsupportedEncodingException {
     	String queryFormatted = "&q=" + URLEncoder.encode(query, "UTF-8");
-    	String URLSearchVideos = baseURL + "/search?part=snippet&maxResults=3" + queryFormatted + "&type=video";
+    	String URLSearchVideos = baseURL + "/search?part=snippet&maxResults=1" + queryFormatted + "&type=video";
     	ClientResource cr = new ClientResource(URLSearchVideos);  
     	ChallengeResponse chr = new ChallengeResponse(ChallengeScheme.HTTP_OAUTH_BEARER);
         chr.setRawValue(access_token);

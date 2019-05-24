@@ -55,7 +55,7 @@ legend {
 #cajaWiki {
 	background-color: #fff;
 	width: 46%;
-	height: 350px;
+	height: 460px;
 	margin-left: 2%;
 	margin-top: 20px;
 	float: left;
@@ -65,22 +65,56 @@ legend {
 #cajaWiki p {
 	margin: 10px;
 	font-family: 'Montserrat';
+	text-transform: inherit;
+}
+
+#cajaWiki p::first-letter {
+	margin: 10px;
+	font-family: 'Montserrat';
+	text-transform: uppercase;
+	letter-spacing: -10px ;
 }
 
 #cajaYT {
 	background-color: #fff;
 	border-radius: 15px;
 	width: 46%;
-	height: 350px;
+	height: 460px;
 	margin-left: 5%;
 	margin-top: 20px;
 	float: left;
 	
 }
 
-#cajaYT iframe{
+input[type=submit]{
+  background-color: #000; 
+  border: none;
+  border-radius: 4px;
+  color: white;
+  padding: 10px 10px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-family: 'Montserrat';
+  font-size: 16px;
+  cursor: pointer;
+}
 
-	
+input[type=text] {
+  width: 100%;
+  padding: 12px 20px;
+  margin: 8px 0;
+  box-sizing: border-box;
+  border: 2px solid black;
+  border-radius: 4px;
+  font-family: 'Montserrat';
+  
+  background-color: white;
+  background-image: url('images/comentario.png');
+  background-size: 25px 25px;
+  background-position: 10px 10px; 
+  background-repeat: no-repeat;
+  padding-left: 40px;
 }
 
 
@@ -111,7 +145,7 @@ legend {
 
 #twitch-embed {
 	margin-top: 50px;
-	margin-left: 20px;
+	margin-left: -80px;
 	margin-right: 20px;
 	float:left;
 	
@@ -140,7 +174,8 @@ legend {
 }
 
 
-@media ( max-width : 400px) {
+/*MEDIA QUERIES*/
+@media ( max-width : 1500px) {
 	#cajaLogo img{
 	width: 100%;
 	height: 100%;
@@ -148,66 +183,50 @@ legend {
 
 	#cajaWiki {
 		width: 100%;
-		height: 1000px;
+		height: 100%;
 		margin-left: 0%;
 	}
-	#cajaYT {
-		width: 100%;
-		height: 700px;
+	
+	#cajaYT{
+		width:100%;
+		height: 100%;
 		margin-left: 0%;
 	}
+	
+	#videosYT{
+		margin-left:0px;
+	}
+	
+	
 	#cajaSpotify {
 		width: 100%;
-		height: 700px;
+		height: 100%;
 		margin-left: 0%;
 	}
 	
 	#cajaSpotify iframe{
 		margin-top: 50px;
-		margin-left: 20%;
+		margin-left: 50px;
+		margin-bottom: 50px;
 	}
 	#cajaTwitch {
 		width: 100%;
 		height: 800px;
-		margin-left: 0%;
-	}
-}
-
-
-@media ( max-width : 900px) {
-	#cajaLogo img{
-	width: 100%;
-	height: 100%;
-	}
-
-	#cajaWiki {
-		width: 100%;
-		height: 450px;
-		margin-left: 0%;
-	}
-	#cajaYT {
-		width: 100%;
-		height: 450px;
-		margin-left: 0%;
-	}
-	#cajaSpotify {
-		width: 100%;
-		height: 650px;
 		margin-left: 0%;
 	}
 	
-	#cajaSpotify iframe{
-		margin-top: 20px;
-		margin-left: 30%;
-		margin-right: 100px;
-	}
-	#cajaTwitch {
-		width: 100%;
-		height: 800px;
-		margin-left: 0%;
-	}
+	#twitch-embed {
+	
+	margin-left: 50px;
+	
+	
 }
+}
+
+
+
 </style>
+
 
 </head>
 <body>
@@ -243,37 +262,49 @@ legend {
 		<div id="encabezado">
 				<img src="images/youtube.png">
 				<h3>
-					Videos para
+					Video de
 					<c:out value="${param.searchQuery}" />
 				</h3>
 			</div>
 			
+			<div id="videosYT">
+			<c:set var="count" value="0" scope="page" />
 				<c:forEach items="${requestScope.videos}" var="video">
-				<div id="cajitas" style="width:25%; float:left; margin: 0px 180px 0px -150px;">
-					<iframe style="margin-left: -100px;"  id="ytplayer"width="300" height="180"
+				
+					<iframe style="margin-left:-120px; margin-top:20px;"  id="ytplayer"width="400" height="230"
   			src="http://www.youtube.com/embed/<c:out value="${video.id.videoId}"/>">
   					</iframe>
+  					
 							
-							<form action="YoutubePostServlet" method="POST" >
-							<input type="text" name="comment">
+							<form style="margin-left:10%;" action="YoutubePostServlet" method="POST" >
+							<input style=" width: 70%; heigth: 10%; margin-top:20px; " type="text" name="comment" placeholder=" Introduce tu comentario">
 							<input type="hidden" name="videoId" value=<c:out value="${video.id.videoId}"/>>
-							<input type="submit" value="enviar">
+							<input type="submit" value="Comentar">
 							</form>
-							<form action="YoutubeRateServlet" method="POST" >
+							
+							<form  style="margin-left:10%; " action="YoutubeRateServlet" method="POST" >
 							<input type="hidden" name="videoId" value=<c:out value="${video.id.videoId}"/>>
-							<input name="likedislike" value="like" type="hidden">
-							<input type="submit" value="like">
+							<input style="width:35px; heigth:35px;" type="image" src="images/likeYT.png"  />
 							</form>
-							<form action="YoutubeRateServlet" method="POST" >
+			
+							<form style="margin-left:10%;  margin-bottom:50px; margin-top:5px; float:left; " action="YoutubeRateServlet" method="POST" >
 							<input type="hidden" name="videoId" value=<c:out value="${video.id.videoId}"/>>
 							<input name="likedislike" value="dislike" type="hidden">
-							<input type="submit" value="dislike">
+							<input style="width:35px; heigth:35px;" type="image" src="images/dislike.png"  />
+							
 							</form>
 	
-				</div>	
-				</c:forEach>
-			
+				
+				<c:set var="count" value="${count + 1}" scope="page"/>	
+			</c:forEach>
+			<c:set var = "streams" scope = "session" value = "${requestScope.streams}"/>
+			<c:if test="${count == 0}">
+         		<img alt="No hay resultados" src="images/noResultadoYT.png" style="width: 350px; height: 100px; margin-left: 50px; margin-top:50px; margin-bottom:50px;  ">
+     		 </c:if>
+			</div>
 		</div>
+	
+			
 
 		<div id="cajaSpotify">
 			<div id="encabezado">
