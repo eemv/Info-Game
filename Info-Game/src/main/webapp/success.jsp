@@ -283,6 +283,7 @@ input[type=text] {
 							</form>
 							
 							<form  style="margin-left:10%; " action="YoutubeRateServlet" method="POST" >
+							<input name="likedislike" value="like" type="hidden">
 							<input type="hidden" name="videoId" value=<c:out value="${video.id.videoId}"/>>
 							<input style="width:35px; heigth:35px;" type="image" src="images/likeYT.png"  />
 							</form>
