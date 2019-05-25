@@ -356,7 +356,7 @@ input[type=text] {
 			</c:forEach>
 			<c:set var = "streams" scope = "session" value = "${requestScope.streams}"/>
 			<c:if test="${count == 0}">
-         		<img alt="No hay" src="images/noResultadoTwitch.jpg" style="width: 150px; height: 60%;">
+         		<img alt="No hay" src="images/noResultadoTwitch.png" style="width: 150px; height: 60%;">
      		 </c:if>
 			
 		</div>
